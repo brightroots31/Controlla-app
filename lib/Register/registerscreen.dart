@@ -51,15 +51,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             SizedBox(
               width: MediaQuery.of(context).size.width - 60,
               child: const TextInputField(
-                hinttext: "Phone Number",
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.040,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width - 60,
-              child: const TextInputField(
                 hinttext: "Password",
               ),
             ),

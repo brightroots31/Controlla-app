@@ -2,10 +2,16 @@ import 'dart:async';
 
 import 'package:controlla/Components/images.dart';
 import 'package:controlla/shared/auth/routes.dart';
+// import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
+  // runApp(DevicePreview(
+  //   enabled: true,
+  //   tools: [...DevicePreview.defaultTools],
+  //   builder: (context) => MyApp(),
+  // ));
 }
 
 class MyApp extends StatelessWidget {

@@ -1,5 +1,4 @@
 import 'package:controlla/Components/formtextbutton.dart';
-import 'package:controlla/Components/images.dart';
 import 'package:controlla/shared/auth/constant.dart';
 import 'package:controlla/shared/auth/routes.dart';
 import 'package:flutter/material.dart';
@@ -38,85 +37,6 @@ class _OftenScreenState extends State<OftenScreen> {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.060,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      _datePickerController.backward!();
-                    });
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.height * 0.040,
-                    height: MediaQuery.of(context).size.height * 0.040,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                          MediaQuery.of(context).size.height * 0.030),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 1,
-                          blurRadius: 4,
-                          offset: const Offset(0, 1),
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                        child: Image.asset(
-                      Imagesforapp.arrowback,
-                      height: MediaQuery.of(context).size.height * 0.020,
-                    )),
-                  ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.050,
-                ),
-                Text(
-                  'October 2022',
-                  style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.height * 0.022,
-                      color: Constant.primaryColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.050,
-                ),
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      _datePickerController.forward!();
-                    });
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.height * 0.040,
-                    height: MediaQuery.of(context).size.height * 0.040,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                          MediaQuery.of(context).size.height * 0.030),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 1,
-                          blurRadius: 4,
-                          offset: const Offset(0, 1),
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                        child: Image.asset(
-                      Imagesforapp.arrowforward,
-                      height: MediaQuery.of(context).size.height * 0.020,
-                    )),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.024,
             ),
             Container(
               width: MediaQuery.of(context).size.width - 120,

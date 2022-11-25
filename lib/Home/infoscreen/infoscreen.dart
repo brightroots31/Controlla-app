@@ -12,17 +12,9 @@ class InfoScreen extends StatefulWidget {
 
 class _InfoScreenState extends State<InfoScreen> {
   List titleofbutton = [
-    "Step of the line",
-    "Objections",
-    "Hotels",
-    "Books",
     "Membership"
   ];
   List buttonimage = [
-    Imagesforapp.stepcounter,
-    Imagesforapp.objection,
-    Imagesforapp.hotel,
-    Imagesforapp.books,
     Imagesforapp.membership
   ];
   @override
@@ -49,7 +41,7 @@ class _InfoScreenState extends State<InfoScreen> {
           ),
           Expanded(
               child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: 1,
                   itemBuilder: (context, index) {
                     return Column(
                       children: [

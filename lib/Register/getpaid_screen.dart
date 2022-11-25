@@ -43,7 +43,7 @@ class _GetPaidScreenState extends State<GetPaidScreen> {
                   blurRadius: 4,
                   offset: const Offset(0, 1),
                 ),
-              ],
+              ], 
             ),
             child: Center(
                 child: Padding(
@@ -69,7 +69,7 @@ class _GetPaidScreenState extends State<GetPaidScreen> {
                 color: Constant.primaryColor,
                 fontWeight: FontWeight.w500),
           ),
-          const Spacer(),
+          const Spacer(), 
           SizedBox(
             width: MediaQuery.of(context).size.width - 60,
             child: FormTextButton(

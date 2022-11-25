@@ -130,7 +130,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                 )),
                               ),
                             ),
-                            const SizedBox(
+                            const SizedBox(    
                               height: 3,
                             )
                           ],

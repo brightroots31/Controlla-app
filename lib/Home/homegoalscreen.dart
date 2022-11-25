@@ -54,7 +54,7 @@ class _GoalScreenState extends State<GoalScreen> {
                 ],
               ),
               child: Center(
-                child: Row(
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     InkWell(
                       onTap: () {
@@ -63,7 +63,7 @@ class _GoalScreenState extends State<GoalScreen> {
                         });
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.30,
+                        width: MediaQuery.of(context).size.width /2.5,
                         height: MediaQuery.of(context).size.height * 0.070,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
@@ -84,7 +84,6 @@ class _GoalScreenState extends State<GoalScreen> {
                         ),
                       ),
                     ),
-                    const Spacer(),
                     InkWell(
                       onTap: () {
                         setState(() {
@@ -92,7 +91,7 @@ class _GoalScreenState extends State<GoalScreen> {
                         });
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.30,
+                        width: MediaQuery.of(context).size.width /1.9,
                         height: MediaQuery.of(context).size.height * 0.070,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
@@ -113,35 +112,7 @@ class _GoalScreenState extends State<GoalScreen> {
                         ),
                       ),
                     ),
-                    const Spacer(),
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          _currentindex = 2;
-                        });
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.30,
-                        height: MediaQuery.of(context).size.height * 0.070,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: _currentindex == 2
-                                ? Constant.primaryColor
-                                : Colors.white),
-                        child: Center(
-                          child: Text(
-                            'Awards',
-                            style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.019,
-                                color: _currentindex == 2
-                                    ? Colors.white
-                                    : Constant.primaryColor,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                      ),
-                    ),
+                   
                   ],
                 ),
               ),
@@ -450,7 +421,7 @@ class _GoalScreenState extends State<GoalScreen> {
         ),
         Text(
           'Ops!',
-          style: TextStyle(
+          style: TextStyle( 
               fontSize: MediaQuery.of(context).size.height * 0.019,
               fontWeight: FontWeight.w600),
         ),
