@@ -1,8 +1,17 @@
+// ignore_for_file: prefer_final_fields, prefer_const_constructors, unnecessary_this, avoid_function_literals_in_foreach_calls, depend_on_referenced_packages
+
 import 'package:controlla/Components/formtextbutton.dart';
+import 'package:controlla/Components/images.dart';
 import 'package:controlla/shared/auth/constant.dart';
 import 'package:controlla/shared/auth/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
+    show CalendarCarousel;
+import 'package:flutter_calendar_carousel/classes/event.dart';
+import 'package:flutter_calendar_carousel/classes/event_list.dart';
+import 'package:intl/intl.dart' show DateFormat;
 
 class OftenScreen extends StatefulWidget {
   const OftenScreen({Key? key}) : super(key: key);
@@ -13,11 +22,148 @@ class OftenScreen extends StatefulWidget {
 
 class _OftenScreenState extends State<OftenScreen> {
   String daterangetype = "Weekly";
+  DateTime _currentDate = DateTime(2022, 11, 25);
+  DateTime _currentDate2 = DateTime(2022, 11, 30);
+  String _currentMonth = DateFormat.yMMM().format(DateTime(2022, 12, 2));
+  DateTime _targetDateTime = DateTime(2022, 12, 2);
   int id = 0;
+  static Widget _eventIcon = Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        // borderRadius:const BorderRadius.all(Radius.circular(1000)),
+        border: Border.all(color: Colors.transparent, width: 2.0),
+      ),
+      child: Image.asset(Imagesforapp.dollar_sign));
+  EventList<Event> _markedDateMap = EventList<Event>(
+    events: {},
+  );
+
   final DateRangePickerController _datePickerController =
       DateRangePickerController();
   @override
   Widget build(BuildContext context) {
+    final _calendarCarouselNoHeader = CalendarCarousel<Event>(
+      // todayBorderColor: Colors.green,
+
+      selectedDayButtonColor: Colors.transparent,
+      selectedDayBorderColor: Colors.transparent,
+      markedDateIconBorderColor: Colors.transparent,
+      onDayPressed: (date, events) {
+        print("======$date");
+        print(_markedDateMap.events.entries.length);
+        events.length == 0
+            ? id == 1
+                ? _markedDateMap.events.entries.length == 7
+                    ? null
+                    : _markedDateMap
+                        .addAll(DateTime(date.year, date.month, date.day), [
+                        Event(
+                          date: DateTime(date.year, date.month, date.day),
+                          title: 'eve',
+                          icon: _eventIcon,
+                        )
+                      ])
+                : null
+            : null;
+        events.length == 0
+            ? id == 2
+                ? _markedDateMap.events.entries.length == 15
+                    ? null
+                    : _markedDateMap
+                        .addAll(DateTime(date.year, date.month, date.day), [
+                        Event(
+                          date: DateTime(date.year, date.month, date.day),
+                          title: 'eve',
+                          icon: _eventIcon,
+                        )
+                      ])
+                : null
+            : null;
+        events.length == 0
+            ? id == 3
+                ? _markedDateMap.events.entries.length == 30
+                    ? null
+                    : _markedDateMap
+                        .addAll(DateTime(date.year, date.month, date.day), [
+                        Event(
+                          date: DateTime(date.year, date.month, date.day),
+                          title: 'eve',
+                          icon: _eventIcon,
+                        )
+                      ])
+                : null
+            : null;
+        events.length == 0
+            ? id == 4
+                ? _markedDateMap.events.entries.length == 1
+                    ? null
+                    : _markedDateMap
+                        .addAll(DateTime(date.year, date.month, date.day), [
+                        Event(
+                          date: DateTime(date.year, date.month, date.day),
+                          title: 'eve',
+                          icon: _eventIcon,
+                        )
+                      ])
+                : null
+            : null;
+
+        this.setState(() => _currentDate2 = date);
+        events.forEach((event) => print(event.title));
+      },
+      daysHaveCircularBorder: true,
+      showOnlyCurrentMonthDate: false,
+      weekendTextStyle: TextStyle(
+        color: Colors.red,
+      ),
+      // thisMonthDayBorderColor: Colors.grey,
+      weekFormat: false,
+//      firstDayOfWeek: 4,
+      markedDatesMap: _markedDateMap,
+      height: 200.0,
+      selectedDateTime: _currentDate2,
+      targetDateTime: _targetDateTime,
+      customGridViewPhysics: NeverScrollableScrollPhysics(),
+      // markedDateCustomShapeBorder:
+      // CircleBorder(side: BorderSide(color: Colors.yellow,width: 0),
+      // ),
+
+      showHeader: false,
+      todayTextStyle: TextStyle(
+        color: Colors.blue,
+      ),
+      markedDateShowIcon: true,
+      // markedDateIconMaxShown: 2,
+      markedDateIconBuilder: (event) {
+        return event.icon;
+      },
+      // markedDateMoreShowTotal:
+      //     true,
+      todayButtonColor: Colors.yellow,
+      selectedDayTextStyle: TextStyle(
+        color: Colors.yellow,
+      ),
+      minSelectedDate: _currentDate.subtract(Duration(days: 360)),
+      maxSelectedDate: _currentDate.add(Duration(days: 360)),
+      prevDaysTextStyle: TextStyle(
+        fontSize: 16,
+        color: Colors.pinkAccent,
+      ),
+      inactiveDaysTextStyle: TextStyle(
+        color: Colors.tealAccent,
+        fontSize: 16,
+      ),
+      onCalendarChanged: (DateTime date) {
+        this.setState(() {
+          _targetDateTime = date;
+          _currentMonth = DateFormat.yMMM().format(_targetDateTime);
+        });
+      },
+      onDayLongPressed: (DateTime date) {
+        print('long pressed date $date');
+      },
+    );
+
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -67,22 +213,23 @@ class _OftenScreenState extends State<OftenScreen> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.013,
                     ),
-                    SfDateRangePicker(
-                      selectionShape: DateRangePickerSelectionShape.circle,
-                      controller: _datePickerController,
-                      rangeTextStyle: const TextStyle(color: Colors.white),
-                      rangeSelectionColor: Constant.primaryColor,
-                      endRangeSelectionColor: Constant.primaryColor,
-                      startRangeSelectionColor: Constant.primaryColor,
-                      headerHeight: 0,
-                      todayHighlightColor: Colors.black.withOpacity(0.3),
-                      monthViewSettings: DateRangePickerMonthViewSettings(
-                          viewHeaderStyle: DateRangePickerViewHeaderStyle(
-                              textStyle: TextStyle(
-                                  color: Colors.black.withOpacity(0.3),
-                                  fontWeight: FontWeight.w600))),
-                      selectionMode: DateRangePickerSelectionMode.range,
-                    ),
+                    _calendarCarouselNoHeader
+                    // SfDateRangePicker(
+                    //   selectionShape: DateRangePickerSelectionShape.circle,
+                    //   controller: _datePickerController,
+                    //   rangeTextStyle: const TextStyle(color: Colors.white),
+                    //   rangeSelectionColor: Constant.primaryColor,
+                    //   endRangeSelectionColor: Constant.primaryColor,
+                    //   startRangeSelectionColor: Constant.primaryColor,
+                    //   headerHeight: 0,
+                    //   todayHighlightColor: Colors.black.withOpacity(0.3),
+                    //   monthViewSettings: DateRangePickerMonthViewSettings(
+                    //       viewHeaderStyle: DateRangePickerViewHeaderStyle(
+                    //           textStyle: TextStyle(
+                    //               color: Colors.black.withOpacity(0.3),
+                    //               fontWeight: FontWeight.w600))),
+                    //   selectionMode: DateRangePickerSelectionMode.range,
+                    // ),
                   ],
                 ),
               )),
@@ -105,6 +252,7 @@ class _OftenScreenState extends State<OftenScreen> {
                       setState(() {
                         id = 1;
                         daterangetype = "Weekly";
+                        _markedDateMap.events.clear();
                       });
                     },
                   ),
@@ -136,6 +284,7 @@ class _OftenScreenState extends State<OftenScreen> {
                       setState(() {
                         id = 2;
                         daterangetype = "Bi-Weekly";
+                        _markedDateMap.events.clear();
                       });
                     },
                   ),
@@ -167,6 +316,7 @@ class _OftenScreenState extends State<OftenScreen> {
                       setState(() {
                         id = 3;
                         daterangetype = "Monthly";
+                        _markedDateMap.events.clear();
                       });
                     },
                   ),
@@ -198,6 +348,7 @@ class _OftenScreenState extends State<OftenScreen> {
                       setState(() {
                         id = 4;
                         daterangetype = "Specific Day";
+                        _markedDateMap.events.clear();
                       });
                     },
                   ),
@@ -223,7 +374,25 @@ class _OftenScreenState extends State<OftenScreen> {
                     fontSize: MediaQuery.of(context).size.height * 0.024,
                     fontWeight: FontWeight.w500),
                 onpressed: () {
-                  Navigator.pushNamed(context, AppRoutes.StartDateScreen);
+                  if (id == 1 && _markedDateMap.events.entries.length == 7) {
+                    Navigator.pushNamed(context, AppRoutes.StartDateScreen);
+                  }else if(
+                    id == 2 && _markedDateMap.events.entries.length == 15
+                  ){
+                     Navigator.pushNamed(context, AppRoutes.StartDateScreen);
+                  }
+                  else if(
+                    id == 3 && _markedDateMap.events.entries.length == 30
+                  ){
+                     Navigator.pushNamed(context, AppRoutes.StartDateScreen);
+                  }
+                  else if(
+                    id == 4 && _markedDateMap.events.entries.length == 1
+                  ){
+                     Navigator.pushNamed(context, AppRoutes.StartDateScreen);
+                  }else{
+                    Fluttertoast.showToast(msg: "Please select specifics days");
+                  }
                 },
               ),
             ),

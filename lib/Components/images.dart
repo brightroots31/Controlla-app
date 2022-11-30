@@ -40,4 +40,5 @@ class Imagesforapp {
   static String swimmingpool = "assets/images/swimmingpool.png";
   static String phonelocation = "assets/images/phonelocation.png";
   static String premium_verion = "assets/images/premiumversion.png";
+  static String dollar_sign = "assets/images/dollar-sign.png";
 }
