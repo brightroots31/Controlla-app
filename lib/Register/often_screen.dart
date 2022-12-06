@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_final_fields, prefer_const_constructors, unnecessary_this, avoid_function_literals_in_foreach_calls, depend_on_referenced_packages
+// ignore_for_file: prefer_final_fields, prefer_const_constructors, unnecessary_this, avoid_function_literals_in_foreach_calls, depend_on_referenced_packages, unused_field, no_leading_underscores_for_local_identifiers, avoid_print
 
 import 'package:controlla/Components/formtextbutton.dart';
 import 'package:controlla/Components/images.dart';
@@ -43,70 +43,33 @@ class _OftenScreenState extends State<OftenScreen> {
   @override
   Widget build(BuildContext context) {
     final _calendarCarouselNoHeader = CalendarCarousel<Event>(
-      // todayBorderColor: Colors.green,
-
       selectedDayButtonColor: Colors.transparent,
       selectedDayBorderColor: Colors.transparent,
       markedDateIconBorderColor: Colors.transparent,
       onDayPressed: (date, events) {
-        print("======$date");
-        print(_markedDateMap.events.entries.length);
-        events.length == 0
-            ? id == 1
-                ? _markedDateMap.events.entries.length == 7
-                    ? null
-                    : _markedDateMap
-                        .addAll(DateTime(date.year, date.month, date.day), [
-                        Event(
-                          date: DateTime(date.year, date.month, date.day),
-                          title: 'eve',
-                          icon: _eventIcon,
-                        )
-                      ])
-                : null
-            : null;
-        events.length == 0
-            ? id == 2
-                ? _markedDateMap.events.entries.length == 15
-                    ? null
-                    : _markedDateMap
-                        .addAll(DateTime(date.year, date.month, date.day), [
-                        Event(
-                          date: DateTime(date.year, date.month, date.day),
-                          title: 'eve',
-                          icon: _eventIcon,
-                        )
-                      ])
-                : null
-            : null;
-        events.length == 0
-            ? id == 3
-                ? _markedDateMap.events.entries.length == 30
-                    ? null
-                    : _markedDateMap
-                        .addAll(DateTime(date.year, date.month, date.day), [
-                        Event(
-                          date: DateTime(date.year, date.month, date.day),
-                          title: 'eve',
-                          icon: _eventIcon,
-                        )
-                      ])
-                : null
-            : null;
-        events.length == 0
-            ? id == 4
-                ? _markedDateMap.events.entries.length == 1
-                    ? null
-                    : _markedDateMap
-                        .addAll(DateTime(date.year, date.month, date.day), [
-                        Event(
-                          date: DateTime(date.year, date.month, date.day),
-                          title: 'eve',
-                          icon: _eventIcon,
-                        )
-                      ])
-                : null
-            : null;
+        // int daysOfWeek = DateTime.now().weekday;
+        // print(daysOfWeek);
+
+        // var lastdayofmonth =
+        //     DateTime(DateTime.now().year, DateTime.now().month + 1, 0);
+        // print(DateFormat("EEEE").format(lastdayofmonth));
+        // print(DateFormat("EEEE").format(firstdayofmonth));
+        // print(firstdayofmonth);
+
+        // events.isEmpty
+        //     ? id == 1
+        //         ? _markedDateMap.events.entries.length == 7
+        //             ? null
+        // : _markedDateMap
+        //     .addAll(DateTime(date.year, date.month, date.day), [
+        //     Event(
+        //       date: DateTime(date.year, date.month, date.day),
+        //       title: 'eve',
+        //       icon: _eventIcon,
+        //     )
+        //   ])
+        //         : null
+        //     : null;
 
         this.setState(() => _currentDate2 = date);
         events.forEach((event) => print(event.title));
@@ -116,29 +79,20 @@ class _OftenScreenState extends State<OftenScreen> {
       weekendTextStyle: TextStyle(
         color: Colors.red,
       ),
-      // thisMonthDayBorderColor: Colors.grey,
       weekFormat: false,
-//      firstDayOfWeek: 4,
       markedDatesMap: _markedDateMap,
       height: 200.0,
       selectedDateTime: _currentDate2,
       targetDateTime: _targetDateTime,
       customGridViewPhysics: NeverScrollableScrollPhysics(),
-      // markedDateCustomShapeBorder:
-      // CircleBorder(side: BorderSide(color: Colors.yellow,width: 0),
-      // ),
-
       showHeader: false,
       todayTextStyle: TextStyle(
         color: Colors.blue,
       ),
       markedDateShowIcon: true,
-      // markedDateIconMaxShown: 2,
       markedDateIconBuilder: (event) {
         return event.icon;
       },
-      // markedDateMoreShowTotal:
-      //     true,
       todayButtonColor: Colors.yellow,
       selectedDayTextStyle: TextStyle(
         color: Colors.yellow,
@@ -253,6 +207,68 @@ class _OftenScreenState extends State<OftenScreen> {
                         id = 1;
                         daterangetype = "Weekly";
                         _markedDateMap.events.clear();
+                        var firstdayofmonth = DateTime(
+                            DateTime.now().year, DateTime.now().month, 1);
+                        print(firstdayofmonth);
+                        DateTime firstsunday = firstdayofmonth.add(
+                          Duration(
+                            days: (DateTime.sunday - firstdayofmonth.weekday) %
+                                DateTime.daysPerWeek,
+                          ),
+                        );
+                        print(firstsunday);
+
+                        DateTime lastDay = firstsunday
+                            .add(Duration(days: 7, hours: 23, minutes: 59));
+                        print(lastDay);
+                        DateTime nextday = lastDay
+                            .add(Duration(days: 6, hours: 23, minutes: 59));
+                        print(nextday);
+                        DateTime nextdasy = nextday
+                            .add(Duration(days: 6, hours: 23, minutes: 59));
+                        print(nextdasy);
+                        _markedDateMap.addAll(
+                            DateTime(firstsunday.year, firstsunday.month,
+                                firstsunday.day),
+                            [
+                              Event(
+                                date: DateTime(firstsunday.year,
+                                    firstsunday.month, firstsunday.day),
+                                title: 'eve',
+                                icon: _eventIcon,
+                              )
+                            ]);
+                        _markedDateMap.addAll(
+                            DateTime(lastDay.year, lastDay.month, lastDay.day),
+                            [
+                              Event(
+                                date: DateTime(
+                                    lastDay.year, lastDay.month, lastDay.day),
+                                title: 'eve',
+                                icon: _eventIcon,
+                              )
+                            ]);
+                        _markedDateMap.addAll(
+                            DateTime(nextday.year, nextday.month, nextday.day),
+                            [
+                              Event(
+                                date: DateTime(
+                                    nextday.year, nextday.month, nextday.day),
+                                title: 'eve',
+                                icon: _eventIcon,
+                              )
+                            ]);
+                        _markedDateMap.addAll(
+                            DateTime(
+                                nextdasy.year, nextdasy.month, nextdasy.day),
+                            [
+                              Event(
+                                date: DateTime(nextdasy.year, nextdasy.month,
+                                    nextdasy.day),
+                                title: 'eve',
+                                icon: _eventIcon,
+                              )
+                            ]);
                       });
                     },
                   ),
@@ -285,6 +301,48 @@ class _OftenScreenState extends State<OftenScreen> {
                         id = 2;
                         daterangetype = "Bi-Weekly";
                         _markedDateMap.events.clear();
+                        var firstdayofmonth = DateTime(
+                            DateTime.now().year, DateTime.now().month, 1);
+                        print(firstdayofmonth);
+                        DateTime firstsunday = firstdayofmonth.add(
+                          Duration(
+                            days: (DateTime.sunday - firstdayofmonth.weekday) %
+                                DateTime.daysPerWeek,
+                          ),
+                        );
+                        print(firstsunday);
+
+                        DateTime lastDay = firstsunday
+                            .add(Duration(days: 7, hours: 23, minutes: 59));
+                        print(lastDay);
+                        DateTime nextday = lastDay
+                            .add(Duration(days: 6, hours: 23, minutes: 59));
+                        print(nextday);
+                        DateTime nextdasy = nextday
+                            .add(Duration(days: 6, hours: 23, minutes: 59));
+                        print(nextdasy);
+                        _markedDateMap.addAll(
+                            DateTime(firstsunday.year, firstsunday.month,
+                                firstsunday.day),
+                            [
+                              Event(
+                                date: DateTime(firstsunday.year,
+                                    firstsunday.month, firstsunday.day),
+                                title: 'eve',
+                                icon: _eventIcon,
+                              )
+                            ]);
+
+                        _markedDateMap.addAll(
+                            DateTime(nextday.year, nextday.month, nextday.day),
+                            [
+                              Event(
+                                date: DateTime(
+                                    nextday.year, nextday.month, nextday.day),
+                                title: 'eve',
+                                icon: _eventIcon,
+                              )
+                            ]);
                       });
                     },
                   ),
@@ -317,6 +375,37 @@ class _OftenScreenState extends State<OftenScreen> {
                         id = 3;
                         daterangetype = "Monthly";
                         _markedDateMap.events.clear();
+                        var firstdayofmonth = DateTime(
+                            DateTime.now().year, DateTime.now().month, 1);
+                        print(firstdayofmonth);
+                        DateTime firstsunday = firstdayofmonth.add(
+                          Duration(
+                            days: (DateTime.sunday - firstdayofmonth.weekday) %
+                                DateTime.daysPerWeek,
+                          ),
+                        );
+                        print(firstsunday);
+
+                        DateTime lastDay = firstsunday
+                            .add(Duration(days: 7, hours: 23, minutes: 59));
+                        print(lastDay);
+                        DateTime nextday = lastDay
+                            .add(Duration(days: 6, hours: 23, minutes: 59));
+                        print(nextday);
+                        DateTime nextdasy = nextday
+                            .add(Duration(days: 6, hours: 23, minutes: 59));
+                        print(nextdasy);
+                        _markedDateMap.addAll(
+                            DateTime(firstdayofmonth.year,
+                                firstdayofmonth.month, firstdayofmonth.day),
+                            [
+                              Event(
+                                date: DateTime(firstdayofmonth.year,
+                                    firstdayofmonth.month, firstdayofmonth.day),
+                                title: 'eve',
+                                icon: _eventIcon,
+                              )
+                            ]);
                       });
                     },
                   ),
@@ -376,21 +465,16 @@ class _OftenScreenState extends State<OftenScreen> {
                 onpressed: () {
                   if (id == 1 && _markedDateMap.events.entries.length == 7) {
                     Navigator.pushNamed(context, AppRoutes.StartDateScreen);
-                  }else if(
-                    id == 2 && _markedDateMap.events.entries.length == 15
-                  ){
-                     Navigator.pushNamed(context, AppRoutes.StartDateScreen);
-                  }
-                  else if(
-                    id == 3 && _markedDateMap.events.entries.length == 30
-                  ){
-                     Navigator.pushNamed(context, AppRoutes.StartDateScreen);
-                  }
-                  else if(
-                    id == 4 && _markedDateMap.events.entries.length == 1
-                  ){
-                     Navigator.pushNamed(context, AppRoutes.StartDateScreen);
-                  }else{
+                  } else if (id == 2 &&
+                      _markedDateMap.events.entries.length == 15) {
+                    Navigator.pushNamed(context, AppRoutes.StartDateScreen);
+                  } else if (id == 3 &&
+                      _markedDateMap.events.entries.length == 30) {
+                    Navigator.pushNamed(context, AppRoutes.StartDateScreen);
+                  } else if (id == 4 &&
+                      _markedDateMap.events.entries.length == 1) {
+                    Navigator.pushNamed(context, AppRoutes.StartDateScreen);
+                  } else {
                     Fluttertoast.showToast(msg: "Please select specifics days");
                   }
                 },
