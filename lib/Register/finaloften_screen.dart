@@ -13,11 +13,27 @@ class FinalOftenScreen extends StatefulWidget {
 
 class _FinalOftenScreenState extends State<FinalOftenScreen> {
   String daterangetype = "Weekly";
-  int id = 0;
+  int count = 1;
   final DateRangePickerController _datePickerController =
       DateRangePickerController();
+
+  void increment() {
+    setState(() {
+      count++;
+    });
+  }
+
+  void decrement() {
+    setState(() {
+      count--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    double font10 = MediaQuery.of(context).size.width * 0.025;
+    double font20 = MediaQuery.of(context).size.width * 0.049;
+    double font25 = MediaQuery.of(context).size.width * 0.065;
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -27,74 +43,27 @@ class _FinalOftenScreenState extends State<FinalOftenScreen> {
               height: MediaQuery.of(context).size.height * 0.060,
             ),
             SizedBox(
-              child: Text(
-                'How often do you get paid?',
-                style: TextStyle(
-                    color: Constant.primaryColor,
-                    fontSize: MediaQuery.of(context).size.height * 0.032,
-                    fontWeight: FontWeight.w700),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.060,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width - 120,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 1,
-                    blurRadius: 4,
-                    offset: const Offset(0, 1),
-                  ),
-                ],
-              ),
-              child: Center(
-                  child: Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Column(
-                  children: [
-                    Text(
-                      daterangetype,
-                      style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.height * 0.022,
-                          color: const Color(0xff000000).withOpacity(0.5),
-                          fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.013,
-                    ),
-                    SfDateRangePicker(
-                      selectionShape: DateRangePickerSelectionShape.circle,
-                      controller: _datePickerController,
-                      rangeTextStyle: const TextStyle(color: Colors.white),
-                      rangeSelectionColor: Constant.primaryColor,
-                      endRangeSelectionColor: Constant.primaryColor,
-                      startRangeSelectionColor: Constant.primaryColor,
-                      headerHeight: 0,
-                      todayHighlightColor: Colors.black.withOpacity(0.3),
-                      monthViewSettings: DateRangePickerMonthViewSettings(
-                          viewHeaderStyle: DateRangePickerViewHeaderStyle(
-                              textStyle: TextStyle(
-                                  color: Colors.black.withOpacity(0.3),
-                                  fontWeight: FontWeight.w600))),
-                      selectionMode: DateRangePickerSelectionMode.range,
-                    ),
-                  ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 22),
+                child: Text(
+                  // 'How often do you get paid?',
+                  'How many days after the sale do you get paid?',
+                  style: TextStyle(
+                      color: Constant.primaryColor,
+                      fontSize: MediaQuery.of(context).size.height * 0.032,
+                      fontWeight: FontWeight.w700),
                 ),
-              )),
+              ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.067,
+              height: MediaQuery.of(context).size.height * 0.12,
             ),
             Container(
-              width: MediaQuery.of(context).size.height * 0.208,
+              width: MediaQuery.of(context).size.width / 1.2,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                // color: Colors.grey.withOpacity(0.1),
+                color: Colors.white.withOpacity(0.6),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.2),
@@ -106,20 +75,74 @@ class _FinalOftenScreenState extends State<FinalOftenScreen> {
               ),
               child: Center(
                   child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(children: [
-                  Text(
-                    '7 DAYS',
-                    style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.height * 0.032,
-                        color: Constant.primaryColor,
-                        fontWeight: FontWeight.w600),
-                  )
-                ]),
-              )),
+                      padding: const EdgeInsets.all(5),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 2,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              // color: Colors.white10,
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: font10, horizontal: font10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(width: font10),
+                                  GestureDetector(
+                                    onTap: () {
+                                      count != 7 ? increment() : null;
+                                      // increment();
+                                    },
+                                    child: Icon(
+                                      Icons.add,
+                                      // size: MediaQuery.of(context).size.width*0.065,
+                                      size: font25,
+                                    ),
+                                  ),
+                                  SizedBox(width: font10),
+                                  Text(
+                                      count < 10 ? "0$count" : count.toString(),
+                                      style: TextStyle(
+                                          color: Constant.primaryColor,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: font20)),
+                                  SizedBox(width: font10),
+                                  GestureDetector(
+                                    onTap: () {
+                                      count != 1 ? decrement() : null;
+                                    },
+                                    child: Icon(
+                                      Icons.remove,
+                                      // size: MediaQuery.of(context).size.width*0.065,
+                                      size: font25,
+                                    ),
+                                  ),
+                                  SizedBox(width: font10),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: font25 + font10),
+                          GestureDetector(
+                            onTap: () {
+                              // Navigator.pushNamed(context, AppRoutes.SelectWeekPaid);
+                            },
+                            child: Text("days",
+                                style: TextStyle(
+                                    color: Constant.primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: font20 + 2)),
+                          )
+                        ],
+                      ))),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.067,
+              height: MediaQuery.of(context).size.height * 0.5,
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width - 60,
@@ -127,10 +150,11 @@ class _FinalOftenScreenState extends State<FinalOftenScreen> {
                 buttontitle: "Next",
                 buttontitlestyle: TextStyle(
                     color: Colors.white,
-                    fontSize: MediaQuery.of(context).size.height * 0.024,
+                    fontSize: font20,
                     fontWeight: FontWeight.w500),
                 onpressed: () {
-                  Navigator.pushNamed(context, AppRoutes.CongratsScreen);
+                  Navigator.pushNamed(context, AppRoutes.SelectWeekPaid);
+                  // Navigator.pushNamed(context, AppRoutes.CongratsScreen);
                 },
               ),
             ),

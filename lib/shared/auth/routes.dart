@@ -14,8 +14,10 @@ import 'package:controlla/Register/congrats_screen.dart';
 import 'package:controlla/Register/finaloften_screen.dart';
 import 'package:controlla/Register/getpaid_screen.dart';
 import 'package:controlla/Register/often_screen.dart';
+import 'package:controlla/Register/payment_week.dart';
 import 'package:controlla/Register/postion_screen.dart';
 import 'package:controlla/Register/registerscreen.dart';
+import 'package:controlla/Register/select_week.dart';
 import 'package:controlla/Register/startdate_screen.dart';
 import 'package:controlla/main.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +41,8 @@ class AppRoutes {
   static const String HotelScreen = "Hotel Screen";
   static const String InfoScreen = "Info Screen";
   static const String InfoSettingScreen = "Info Setting";
+  static const String PaymentWeek ="Payment week";
+  static const String SelectWeekPaid = "Select week";
 }
 
 Map<String, WidgetBuilder> routes = {
@@ -59,5 +63,7 @@ Map<String, WidgetBuilder> routes = {
   AppRoutes.HotelDetailsScreen: (context) => const HotelDetailsScreen(),
   AppRoutes.HotelScreen: (context) => const HotelScreen(),
   AppRoutes.InfoScreen: (context) => const InfoScreen(),
-  AppRoutes.InfoSettingScreen: (context) => const InfoSettingScreen()
+  AppRoutes.InfoSettingScreen: (context) => const InfoSettingScreen(),
+  AppRoutes.PaymentWeek: (context) => const PaymentWeek(),
+  AppRoutes.SelectWeekPaid: (context)=> const SelectWeekPaid(),
 };

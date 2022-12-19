@@ -41,4 +41,6 @@ class Imagesforapp {
   static String phonelocation = "assets/images/phonelocation.png";
   static String premium_verion = "assets/images/premiumversion.png";
   static String dollar_sign = "assets/images/dollar-sign.png";
+  static String runningdays_calander = "assets/images/runningdays.png";
+  static String variable_calander = "assets/images/variable_calander.png";
 }

@@ -187,7 +187,7 @@ class _PremimumVersionScreenState extends State<PremimumVersionScreen> {
             const SizedBox(
               height: 5,
             ),
-            Container(
+            Container( 
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
