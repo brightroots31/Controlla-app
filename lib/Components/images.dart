@@ -43,4 +43,13 @@ class Imagesforapp {
   static String dollar_sign = "assets/images/dollar-sign.png";
   static String runningdays_calander = "assets/images/runningdays.png";
   static String variable_calander = "assets/images/variable_calander.png";
+  static String weekly_calander = "assets/images/weekly_calander.png";
+  static String biweekly_calander = "assets/images/biweekly_calander.png";
+  static String monthly_calander = "assets/images/monthly_calander.png";
+  static String specificday_calander = "assets/images/specificday_calander.png";
+  static String everyweek_calander = "assets/images/everyweek_calander.png";
+  static String twiceamonth_calander = "assets/images/twiceamonth_calander.png";
+
+  static String delayCheck = "assets/images/delaychec.png";
+  static String delayCheckDollar = "assets/images/delaycheckdollar.png";
 }

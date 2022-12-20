@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field, no_leading_underscores_for_local_identifiers, unnecessary_this, avoid_print, depend_on_referenced_packages, prefer_final_fields
+// ignore_for_file: prefer_final_fields
 
 import 'package:controlla/Components/formtextbutton.dart';
 import 'package:controlla/Components/images.dart';
@@ -10,14 +10,14 @@ import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
-class PaymentWeek extends StatefulWidget {
-  const PaymentWeek({Key? key}) : super(key: key);
+class BiWeeklyCalander extends StatefulWidget {
+  const BiWeeklyCalander({Key? key}) : super(key: key);
 
   @override
-  State<PaymentWeek> createState() => _PaymentWeekState();
+  State<BiWeeklyCalander> createState() => _BiWeeklyCalanderState();
 }
 
-class _PaymentWeekState extends State<PaymentWeek> {
+class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
   Widget _eventIcon = Transform.scale(
     scale: 0.6,
     child: const CircleAvatar(
@@ -44,7 +44,7 @@ class _PaymentWeekState extends State<PaymentWeek> {
     );
     DateTime lastDay =
         firstsunday.add(const Duration(days: 7, hours: 23, minutes: 59));
-    for (int i = 0; i <= 6; i++) {
+    for (int i = 0; i <= 12; i++) {
       aaa.add(
           DateTime(lastDay.year, lastDay.month, lastDay.day + i).toString());
       _markedDateMap
@@ -58,37 +58,50 @@ class _PaymentWeekState extends State<PaymentWeek> {
     }
 
     for (int i = 0; i <= 31; i++) {
-      if (aaa[0].toString() ==
-              DateTime(firstdayofmonth.year, firstdayofmonth.month,
-                      firstdayofmonth.day + i)
-                  .toString() ||
+      if (aaa[0].toString() == DateTime(firstdayofmonth.year, firstdayofmonth.month, firstdayofmonth.day + i).toString() ||
           aaa[1].toString() ==
-              DateTime(firstdayofmonth.year, firstdayofmonth.month,
-                      firstdayofmonth.day + i)
+              DateTime(firstdayofmonth.year, firstdayofmonth.month, firstdayofmonth.day + i)
                   .toString() ||
           aaa[2].toString() ==
-              DateTime(firstdayofmonth.year, firstdayofmonth.month,
-                      firstdayofmonth.day + i)
+              DateTime(firstdayofmonth.year, firstdayofmonth.month, firstdayofmonth.day + i)
                   .toString() ||
           aaa[3].toString() ==
-              DateTime(firstdayofmonth.year, firstdayofmonth.month,
-                      firstdayofmonth.day + i)
+              DateTime(firstdayofmonth.year, firstdayofmonth.month, firstdayofmonth.day + i)
                   .toString() ||
           aaa[4].toString() ==
-              DateTime(firstdayofmonth.year, firstdayofmonth.month,
-                      firstdayofmonth.day + i)
+              DateTime(firstdayofmonth.year, firstdayofmonth.month, firstdayofmonth.day + i)
                   .toString() ||
           aaa[5].toString() ==
+              DateTime(firstdayofmonth.year, firstdayofmonth.month, firstdayofmonth.day + i)
+                  .toString() ||
+          aaa[6].toString() ==
+              DateTime(firstdayofmonth.year, firstdayofmonth.month, firstdayofmonth.day + i)
+                  .toString() ||
+          aaa[7].toString() ==
+              DateTime(firstdayofmonth.year, firstdayofmonth.month, firstdayofmonth.day + i)
+                  .toString() ||
+          aaa[8].toString() ==
+              DateTime(firstdayofmonth.year, firstdayofmonth.month, firstdayofmonth.day + i)
+                  .toString() ||
+          aaa[9].toString() ==
               DateTime(firstdayofmonth.year, firstdayofmonth.month,
                       firstdayofmonth.day + i)
                   .toString() ||
-          aaa[6].toString() ==
+          aaa[10].toString() ==
               DateTime(firstdayofmonth.year, firstdayofmonth.month,
                       firstdayofmonth.day + i)
+                  .toString() ||
+          aaa[11].toString() ==
+              DateTime(firstdayofmonth.year, firstdayofmonth.month,
+                      firstdayofmonth.day + i)
+                  .toString() ||
+          aaa[12].toString() ==
+              DateTime(
+                      firstdayofmonth.year, firstdayofmonth.month, firstdayofmonth.day + i)
                   .toString()) {
         continue;
-      } else if (DateTime(DateTime.now().year, DateTime.now().month,
-                  DateTime.now().day)
+      } else if (DateTime(
+                  DateTime.now().year, DateTime.now().month, DateTime.now().day)
               .toString() ==
           DateTime(firstdayofmonth.year, firstdayofmonth.month,
                   firstdayofmonth.day + i)
@@ -98,11 +111,10 @@ class _PaymentWeekState extends State<PaymentWeek> {
                 firstdayofmonth.day + i),
             [
               Event(
-                date: DateTime(firstdayofmonth.year, firstdayofmonth.month,
-                    firstdayofmonth.day + i),
-                title: 'eve',
-                icon: Image.asset(Imagesforapp.dollar_sign)
-              )
+                  date: DateTime(firstdayofmonth.year, firstdayofmonth.month,
+                      firstdayofmonth.day + i),
+                  title: 'eve',
+                  icon: Image.asset(Imagesforapp.dollar_sign))
             ]);
       } else {
         _markedDateMap.addAll(
@@ -215,7 +227,6 @@ class _PaymentWeekState extends State<PaymentWeek> {
         print('long pressed date $date');
       },
     );
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -228,7 +239,7 @@ class _PaymentWeekState extends State<PaymentWeek> {
               SizedBox(
                 width: MediaQuery.of(context).size.width - 40,
                 child: Text(
-                  'Which period of the week correspond to you payment?',
+                  'Which two-week period of the week correspond to you payment?',
                   style: TextStyle(
                       color: Constant.primaryColor,
                       fontSize: MediaQuery.of(context).size.height * 0.035,
@@ -286,7 +297,7 @@ class _PaymentWeekState extends State<PaymentWeek> {
                     buttontitlestyle: const TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w600),
                     onpressed: () {
-                       Navigator.pushNamed(context, AppRoutes.CongratsScreen);
+                      Navigator.pushNamed(context, AppRoutes.CongratsScreen);
                     },
                   ))
             ],

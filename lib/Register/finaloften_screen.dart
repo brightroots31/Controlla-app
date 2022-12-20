@@ -100,7 +100,6 @@ class _FinalOftenScreenState extends State<FinalOftenScreen> {
                                     },
                                     child: Icon(
                                       Icons.add,
-                                      // size: MediaQuery.of(context).size.width*0.065,
                                       size: font25,
                                     ),
                                   ),
@@ -130,7 +129,7 @@ class _FinalOftenScreenState extends State<FinalOftenScreen> {
                           SizedBox(width: font25 + font10),
                           GestureDetector(
                             onTap: () {
-                              // Navigator.pushNamed(context, AppRoutes.SelectWeekPaid);
+                              
                             },
                             child: Text("days",
                                 style: TextStyle(
@@ -153,7 +152,7 @@ class _FinalOftenScreenState extends State<FinalOftenScreen> {
                     fontSize: font20,
                     fontWeight: FontWeight.w500),
                 onpressed: () {
-                  Navigator.pushNamed(context, AppRoutes.SelectWeekPaid);
+                  Navigator.pushNamed(context, AppRoutes.CongratsScreen);
                   // Navigator.pushNamed(context, AppRoutes.CongratsScreen);
                 },
               ),

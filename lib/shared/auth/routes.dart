@@ -9,15 +9,20 @@ import 'package:controlla/Home/infoscreen/infoscreen.dart';
 import 'package:controlla/Home/infoscreen/infosettingscreen.dart';
 import 'package:controlla/Home/mainscreen.dart';
 import 'package:controlla/Login/loginscreen.dart';
+import 'package:controlla/Register/biweekly/biweekly_calander.dart';
+import 'package:controlla/Register/biweekly/biweekly_screen.dart';
 import 'package:controlla/Register/congrats_for_sellscreen.dart';
 import 'package:controlla/Register/congrats_screen.dart';
 import 'package:controlla/Register/finaloften_screen.dart';
 import 'package:controlla/Register/getpaid_screen.dart';
+import 'package:controlla/Register/monthly/delaypayment_screen.dart';
+import 'package:controlla/Register/monthly/monthpaid_screen.dart';
 import 'package:controlla/Register/often_screen.dart';
 import 'package:controlla/Register/payment_week.dart';
 import 'package:controlla/Register/postion_screen.dart';
 import 'package:controlla/Register/registerscreen.dart';
 import 'package:controlla/Register/select_week.dart';
+import 'package:controlla/Register/specificday/specificday_screen.dart';
 import 'package:controlla/Register/startdate_screen.dart';
 import 'package:controlla/main.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +48,11 @@ class AppRoutes {
   static const String InfoSettingScreen = "Info Setting";
   static const String PaymentWeek ="Payment week";
   static const String SelectWeekPaid = "Select week";
+  static const String BiWeeklyScreen = "Biweekly screen";
+  static const String BiWeeklyCalander= "Biweekly calander";
+  static const String SpecificDayScreen= "Specific screen";
+   static const String MonthpaidPage= "Monthpaid page";
+   static const String DelayPaymentCheck= "delay ";
 }
 
 Map<String, WidgetBuilder> routes = {
@@ -66,4 +76,9 @@ Map<String, WidgetBuilder> routes = {
   AppRoutes.InfoSettingScreen: (context) => const InfoSettingScreen(),
   AppRoutes.PaymentWeek: (context) => const PaymentWeek(),
   AppRoutes.SelectWeekPaid: (context)=> const SelectWeekPaid(),
+  AppRoutes.BiWeeklyScreen:(context) => const BiWeeklyScreen(),
+  AppRoutes.BiWeeklyCalander:(context) => const BiWeeklyCalander(),
+  AppRoutes.SpecificDayScreen:(context)=> const SpecificDayScreen(),
+  AppRoutes.MonthpaidPage:(context)=> const MonthPaidPage(),
+  AppRoutes.DelayPaymentCheck:(context)=> const DelayPaymentCheck(),
 };

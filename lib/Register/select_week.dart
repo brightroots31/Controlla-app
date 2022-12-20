@@ -25,7 +25,7 @@ class _SelectWeekPaidState extends State<SelectWeekPaid> {
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(
-          padding:  EdgeInsets.all(font20),
+          padding: EdgeInsets.all(font20),
           child: Column(children: [
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.060,
@@ -50,7 +50,6 @@ class _SelectWeekPaidState extends State<SelectWeekPaid> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ListView.builder(
-
                       itemCount: weekList.length,
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
@@ -68,7 +67,7 @@ class _SelectWeekPaidState extends State<SelectWeekPaid> {
                           },
                           child: Container(
                             width: 50,
-                            height: font20+font20,
+                            height: font20 + font20,
                             decoration: BoxDecoration(
                                 border:
                                     Border.all(color: Colors.grey, width: 1.5)),
@@ -82,8 +81,8 @@ class _SelectWeekPaidState extends State<SelectWeekPaid> {
                                             fontWeight: FontWeight.bold),
                                       )
                                     : Padding(
-                                      padding: const EdgeInsets.all(4),
-                                      child: Container(
+                                        padding: const EdgeInsets.all(4),
+                                        child: Container(
                                           decoration: BoxDecoration(
                                               color: Colors.grey,
                                               borderRadius:
@@ -96,35 +95,36 @@ class _SelectWeekPaidState extends State<SelectWeekPaid> {
                                                 style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: font20,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             ),
                                           ),
                                         ),
-                                    )),
+                                      )),
                           ),
                         );
                       }),
                 ],
               ),
             ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.5),
+            selectDay == null
+                ? Container()
+                : SizedBox(
+                    width: MediaQuery.of(context).size.width - 60,
+                    child: FormTextButton(
+                      buttontitle: "Next",
+                      buttontitlestyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                      onpressed: () {
+                        Navigator.pushNamed(context, AppRoutes.PaymentWeek);
+                      },
+                    ),
+                  ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.5
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width - 60,
-              child: FormTextButton(
-                buttontitle: "Next",
-                buttontitlestyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500),
-                onpressed: () {
-                  Navigator.pushNamed(context, AppRoutes.PaymentWeek);
-                },
-              ),
-            ),
-             SizedBox(
               height: font20,
             )
           ]),
