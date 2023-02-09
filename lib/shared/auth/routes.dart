@@ -1,5 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
+import 'dart:math';
+
 import 'package:controlla/Home/SettingScreen/accountsettingscreen.dart';
 import 'package:controlla/Home/SettingScreen/premiumversion.dart';
 import 'package:controlla/Home/SettingScreen/termsandconditionscreen.dart';
@@ -10,17 +12,21 @@ import 'package:controlla/Home/infoscreen/infosettingscreen.dart';
 import 'package:controlla/Home/mainscreen.dart';
 import 'package:controlla/Login/loginscreen.dart';
 import 'package:controlla/Register/biweekly/biweekly_calander.dart';
+import 'package:controlla/Register/biweekly/biweekly_dateselectcalander.dart';
 import 'package:controlla/Register/biweekly/biweekly_screen.dart';
+import 'package:controlla/Register/biweekly/sale_represent.dart';
 import 'package:controlla/Register/congrats_for_sellscreen.dart';
 import 'package:controlla/Register/congrats_screen.dart';
 import 'package:controlla/Register/finaloften_screen.dart';
 import 'package:controlla/Register/getpaid_screen.dart';
 import 'package:controlla/Register/monthly/delaypayment_screen.dart';
+import 'package:controlla/Register/monthly/month_week_select.dart';
 import 'package:controlla/Register/monthly/monthpaid_screen.dart';
 import 'package:controlla/Register/often_screen.dart';
 import 'package:controlla/Register/payment_week.dart';
 import 'package:controlla/Register/postion_screen.dart';
 import 'package:controlla/Register/registerscreen.dart';
+import 'package:controlla/Register/reset_password.dart';
 import 'package:controlla/Register/select_week.dart';
 import 'package:controlla/Register/specificday/specificday_screen.dart';
 import 'package:controlla/Register/startdate_screen.dart';
@@ -53,6 +59,10 @@ class AppRoutes {
   static const String SpecificDayScreen= "Specific screen";
    static const String MonthpaidPage= "Monthpaid page";
    static const String DelayPaymentCheck= "delay ";
+   static const String BiweeklyDateSelectedCalander= "BiweeklyDateCalander ";
+   static const String SaleRepresent = "Sale represent";
+   static const String MonthWeekSelect="MonthWeekSelect";
+   static const String ResetPassword="ResetPassword";
 }
 
 Map<String, WidgetBuilder> routes = {
@@ -81,4 +91,8 @@ Map<String, WidgetBuilder> routes = {
   AppRoutes.SpecificDayScreen:(context)=> const SpecificDayScreen(),
   AppRoutes.MonthpaidPage:(context)=> const MonthPaidPage(),
   AppRoutes.DelayPaymentCheck:(context)=> const DelayPaymentCheck(),
+  AppRoutes.BiweeklyDateSelectedCalander:(context)=> const BiWeeklyDateSelectedCalander(),
+  AppRoutes.SaleRepresent:(context)=> const SaleRepresent(),
+  AppRoutes.MonthWeekSelect:(context)=> const MonthWeekSelect(),
+  AppRoutes.ResetPassword:(context)=> const ResetPassword(),
 };

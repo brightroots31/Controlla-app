@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               height: MediaQuery.of(context).size.height * 0.065,
               decoration: const BoxDecoration(
-                  color:  Color(0xff1EC05D),),
+                    color: Constant.primaryColor,),
               child: Center(
                   child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   BoxShadow(
                                     color: Colors.black.withOpacity(0.2),
                                     spreadRadius: 1,
-                                    blurRadius: 4,
+                                    blurRadius: 4,  
                                     offset: const Offset(0, 1),
                                   ),
                                 ],
@@ -292,6 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     )),
                     Image.asset(
                       Imagesforapp.arrowforward,
+                      color: Constant.primaryColor,
                       height: MediaQuery.of(context).size.width * 0.050,
                     ),
                     SizedBox(

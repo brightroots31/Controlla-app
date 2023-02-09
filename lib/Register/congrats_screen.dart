@@ -2,6 +2,7 @@
 
 import 'package:controlla/Components/formtextbutton.dart';
 import 'package:controlla/Components/images.dart';
+import 'package:controlla/shared/auth/constant.dart';
 import 'package:controlla/shared/auth/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -20,8 +21,14 @@ class _CongratsScreenState extends State<CongratsScreen> {
           child: Center(
         child: Column(
           children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.140,),
-            Image.asset(Imagesforapp.congratulation,width: MediaQuery.of(context).size.width - 40,),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.140,
+            ),
+            Image.asset(
+              Imagesforapp.congratulation,
+              color: Constant.primaryColor,
+              width: MediaQuery.of(context).size.width - 40,
+            ),
             Spacer(),
             SizedBox(
               width: MediaQuery.of(context).size.width - 60,
@@ -31,9 +38,10 @@ class _CongratsScreenState extends State<CongratsScreen> {
                     color: Colors.white,
                     fontSize: MediaQuery.of(context).size.height * 0.024,
                     fontWeight: FontWeight.w500),
-                    onpressed: (){
-                    Navigator.pushNamed(context, AppRoutes.PostionScreen);
-                    },
+                onpressed: () {
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  Navigator.pushNamed(context, AppRoutes.PostionScreen);
+                },
               ),
             ),
             SizedBox(

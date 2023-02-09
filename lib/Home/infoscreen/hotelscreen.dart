@@ -34,7 +34,7 @@ class _HotelScreenState extends State<HotelScreen> {
               Container(
                 height: MediaQuery.of(context).size.height * 0.065,
                 decoration: const BoxDecoration(
-                  color: Color(0xff1EC05D),
+                   color: Constant.primaryColor
                 ),
                 child: Center(
                   child: SizedBox(
@@ -112,7 +112,7 @@ class _HotelScreenState extends State<HotelScreen> {
                                       const Spacer(),
                                       const Icon(
                                         Icons.arrow_forward_ios,
-                                        color: Color(0xff1EC05D),
+                                         color: Constant.primaryColor
                                       )
                                     ],
                                   ),

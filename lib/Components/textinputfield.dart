@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 class TextInputField extends StatefulWidget {
   final hinttext;
   final controller;
-  const TextInputField({Key? key, this.hinttext, this.controller})
+  final obscuretext;
+  const TextInputField({Key? key, this.hinttext, this.controller, this.obscuretext})
       : super(key: key);
 
   @override
@@ -35,6 +36,7 @@ class _TextInputFieldState extends State<TextInputField> {
             EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.031),
         child: TextField(
           controller: widget.controller,
+          obscureText: widget.obscuretext,
           decoration: InputDecoration(
             hintText: widget.hinttext,
             hintStyle: TextStyle(

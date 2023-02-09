@@ -1,5 +1,6 @@
 import 'package:controlla/Components/formtextbutton.dart';
 import 'package:controlla/Components/images.dart';
+import 'package:controlla/shared/auth/constant.dart';
 import 'package:controlla/shared/auth/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +24,7 @@ class _SellCongratsScreenState extends State<SellCongratsScreen> {
             ),
             Image.asset(
               Imagesforapp.congrats_for_sell,
+              color: Constant.primaryColor,
               width: MediaQuery.of(context).size.width - 80,
             ),
             const Spacer(),
@@ -35,7 +37,10 @@ class _SellCongratsScreenState extends State<SellCongratsScreen> {
                     fontSize: MediaQuery.of(context).size.height * 0.024,
                     fontWeight: FontWeight.w500),
                 onpressed: () {
-                 Navigator.pushNamed(context, AppRoutes.MainScreen);
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  Navigator.pushReplacementNamed(context, AppRoutes.MainScreen);
+                  // Navigator.of(context).popUntil((route) => route.isFirst);
+                 // Navigator.pushReplacementNamed(context, AppRoutes.LoginPage);
                 },
               ),
             ),

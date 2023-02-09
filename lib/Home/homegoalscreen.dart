@@ -23,7 +23,7 @@ class _GoalScreenState extends State<GoalScreen> {
             Container(
               height: MediaQuery.of(context).size.height * 0.065,
               decoration: const BoxDecoration(
-                color: Color(0xff1EC05D),
+                color: Constant.primaryColor
               ),
               child: Center(
                 child: Text(

@@ -1,6 +1,11 @@
+// ignore_for_file: use_build_context_synchronously, prefer_const_constructors
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:controlla/Components/images.dart';
 import 'package:controlla/shared/auth/constant.dart';
+import 'package:controlla/shared/auth/local_database.dart';
 import 'package:controlla/shared/auth/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -31,6 +36,7 @@ class _SettingScreenState extends State<SettingScreen> {
     Imagesforapp.contact,
     Imagesforapp.logout,
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,9 +46,7 @@ class _SettingScreenState extends State<SettingScreen> {
             children: [
               Container(
                 height: MediaQuery.of(context).size.height * 0.065,
-                decoration: const BoxDecoration(
-                  color: Color(0xff1EC05D),
-                ),
+                decoration: const BoxDecoration(color: Constant.primaryColor),
                 child: Center(
                   child: Text(
                     'Setting',
@@ -62,13 +66,54 @@ class _SettingScreenState extends State<SettingScreen> {
                             InkWell(
                               onTap: () {
                                 index == 1
-                                    ? Navigator.pushNamed(context, AppRoutes.AccountSettingScreen)
+                                    ? Navigator.pushNamed(
+                                        context, AppRoutes.AccountSettingScreen)
                                     : null;
                                 index == 4
-                                    ? Navigator.pushNamed(context, AppRoutes.TermandCondition)
+                                    ? Navigator.pushNamed(
+                                        context, AppRoutes.TermandCondition)
                                     : null;
                                 index == 5
-                                    ? Navigator.pushNamed(context, AppRoutes.PremimumVersionScreen)
+                                    ? Navigator.pushNamed(context,
+                                        AppRoutes.PremimumVersionScreen)
+                                    : null;
+                                index == 7
+                                    ? showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                                "Are you sure you want to logout?"),
+                                            actions: [
+                                              TextButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: Text("No",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Constant
+                                                              .primaryColor))),
+                                              TextButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                    setState(() {
+                                                      LocalDataSaver
+                                                          .saveUserLogData(
+                                                              false);
+                                                      _logOut();
+                                                    });
+                                                  },
+                                                  child: Text("Yes",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Constant
+                                                              .primaryColor))),
+                                            ],
+                                          );
+                                        })
                                     : null;
                               },
                               child: Container(
@@ -93,6 +138,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                     children: [
                                       Image.asset(
                                         buttonimage[index],
+                                        color: Constant.primaryColor,
                                         height:
                                             MediaQuery.of(context).size.height *
                                                 0.033,
@@ -117,8 +163,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                         radius:
                                             MediaQuery.of(context).size.height *
                                                 0.023,
-                                        backgroundColor:
-                                            Constant.primaryColor,
+                                        backgroundColor: Constant.primaryColor,
                                         child: const Center(
                                             child: Icon(
                                           Icons.arrow_forward_ios,
@@ -130,7 +175,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                 )),
                               ),
                             ),
-                            const SizedBox(    
+                            const SizedBox(
                               height: 3,
                             )
                           ],
@@ -141,5 +186,12 @@ class _SettingScreenState extends State<SettingScreen> {
         ),
       ),
     );
+  }
+
+  Future? _logOut() async {
+    LocalDataSaver.saveUserLogData(false);
+    await fetchDataSF();
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacementNamed(context, AppRoutes.LoginPage);
   }
 }

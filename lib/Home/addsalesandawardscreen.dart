@@ -242,16 +242,7 @@ class _AddSalesandAwardState extends State<AddSalesandAward> {
                     CircleAvatar(
                       radius: MediaQuery.of(context).size.height * 0.058,
                       backgroundColor: Colors.transparent,
-                      child: Center(
-                          child: Text(
-                        '9',
-                        style: TextStyle(
-                            fontSize:
-                                MediaQuery.of(context).size.height * 0.042,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600),
-                      )),
-                    )
+                    ),
                   ],
                 ),
               ]),

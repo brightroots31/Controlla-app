@@ -2,6 +2,7 @@
 
 import 'package:controlla/Components/images.dart';
 import 'package:controlla/shared/auth/constant.dart';
+import 'package:controlla/shared/auth/local_database.dart';
 import 'package:controlla/shared/auth/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,12 @@ class OftenScreen extends StatefulWidget {
 }
 
 class _OftenScreenState extends State<OftenScreen> {
+  @override
+  void initState() {
+    fetchDataSF();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +35,6 @@ class _OftenScreenState extends State<OftenScreen> {
               child: Text(
                 'How often do you get paid?',
                 style: TextStyle(
-                    color: Constant.primaryColor,
                     fontSize: MediaQuery.of(context).size.height * 0.035,
                     fontWeight: FontWeight.w700),
               ),
@@ -44,7 +50,7 @@ class _OftenScreenState extends State<OftenScreen> {
                 width: MediaQuery.of(context).size.width - 40,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Constant.primaryColor)),
+                    border: Border.all(color: Colors.black)),
                 child: Padding(
                   padding: EdgeInsets.all(15),
                   child: Row(children: [
@@ -57,7 +63,7 @@ class _OftenScreenState extends State<OftenScreen> {
                             style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.height * 0.019,
-                                color: Constant.primaryColor,
+                                color: Colors.black,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -71,13 +77,17 @@ class _OftenScreenState extends State<OftenScreen> {
                             style: TextStyle(
                               fontSize:
                                   MediaQuery.of(context).size.height * 0.016,
-                              color: Constant.primaryColor,
+                              color: Colors.black,
                             ),
                           ),
                         ),
                       ],
                     ),
-                    Expanded(child: Image.asset(Imagesforapp.weekly_calander))
+                    Expanded(
+                        child: Image.asset(
+                      Imagesforapp.weekly_calander,
+                      color: Colors.black,
+                    ))
                   ]),
                 ),
               ),
@@ -86,14 +96,15 @@ class _OftenScreenState extends State<OftenScreen> {
               height: MediaQuery.of(context).size.height * 0.030,
             ),
             InkWell(
-              onTap: (){
-                 Navigator.pushNamed(context, AppRoutes.BiWeeklyScreen);
+              onTap: () {
+                Navigator.pushNamed(context, AppRoutes.BiWeeklyScreen);
+                //
               },
               child: Container(
                 width: MediaQuery.of(context).size.width - 40,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Constant.primaryColor)),
+                    border: Border.all(color: Colors.black)),
                 child: Padding(
                   padding: EdgeInsets.all(15),
                   child: Row(children: [
@@ -106,7 +117,7 @@ class _OftenScreenState extends State<OftenScreen> {
                             style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.height * 0.019,
-                                color: Constant.primaryColor,
+                                color: Colors.black,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -120,13 +131,17 @@ class _OftenScreenState extends State<OftenScreen> {
                             style: TextStyle(
                               fontSize:
                                   MediaQuery.of(context).size.height * 0.016,
-                              color: Constant.primaryColor,
+                              color: Colors.black,
                             ),
                           ),
                         ),
                       ],
                     ),
-                    Expanded(child: Image.asset(Imagesforapp.biweekly_calander))
+                    Expanded(
+                        child: Image.asset(
+                      Imagesforapp.biweekly_calander,
+                      color: Colors.black,
+                    ))
                   ]),
                 ),
               ),
@@ -135,14 +150,14 @@ class _OftenScreenState extends State<OftenScreen> {
               height: MediaQuery.of(context).size.height * 0.030,
             ),
             InkWell(
-              onTap: (){
-                 Navigator.pushNamed(context, AppRoutes.MonthpaidPage);
+              onTap: () {
+                Navigator.pushNamed(context, AppRoutes.MonthpaidPage);
               },
               child: Container(
                 width: MediaQuery.of(context).size.width - 40,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Constant.primaryColor)),
+                    border: Border.all(color: Colors.black)),
                 child: Padding(
                   padding: EdgeInsets.all(15),
                   child: Row(children: [
@@ -155,7 +170,7 @@ class _OftenScreenState extends State<OftenScreen> {
                             style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.height * 0.019,
-                                color: Constant.primaryColor,
+                                color: Colors.black,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -169,13 +184,15 @@ class _OftenScreenState extends State<OftenScreen> {
                             style: TextStyle(
                               fontSize:
                                   MediaQuery.of(context).size.height * 0.016,
-                              color: Constant.primaryColor,
+                              color: Colors.black,
                             ),
                           ),
                         ),
                       ],
                     ),
-                    Expanded(child: Image.asset(Imagesforapp.monthly_calander))
+                    Expanded(
+                        child: Image.asset(Imagesforapp.monthly_calander,
+                            color: Colors.black))
                   ]),
                 ),
               ),
@@ -184,14 +201,14 @@ class _OftenScreenState extends State<OftenScreen> {
               height: MediaQuery.of(context).size.height * 0.030,
             ),
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.pushNamed(context, AppRoutes.SpecificDayScreen);
               },
               child: Container(
                 width: MediaQuery.of(context).size.width - 40,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Constant.primaryColor)),
+                    border: Border.all(color: Colors.black)),
                 child: Padding(
                   padding: EdgeInsets.all(15),
                   child: Row(children: [
@@ -204,7 +221,7 @@ class _OftenScreenState extends State<OftenScreen> {
                             style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.height * 0.019,
-                                color: Constant.primaryColor,
+                                color: Colors.black,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -218,19 +235,19 @@ class _OftenScreenState extends State<OftenScreen> {
                             style: TextStyle(
                               fontSize:
                                   MediaQuery.of(context).size.height * 0.016,
-                              color: Constant.primaryColor,
+                              color: Colors.black,
                             ),
                           ),
                         ),
                       ],
                     ),
                     Expanded(
-                        child: Image.asset(Imagesforapp.specificday_calander))
+                        child: Image.asset(Imagesforapp.specificday_calander,
+                            color: Colors.black))
                   ]),
                 ),
               ),
             )
-            
           ]),
         ),
       )),

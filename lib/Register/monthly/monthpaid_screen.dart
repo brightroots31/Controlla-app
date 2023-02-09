@@ -1,14 +1,12 @@
 // ignore_for_file: prefer_final_fields, prefer_const_constructors
 
 import 'package:controlla/Components/formtextbutton.dart';
-import 'package:controlla/Components/images.dart';
+import 'package:controlla/Register/monthly/delaypayment_screen.dart';
 import 'package:controlla/shared/auth/constant.dart';
-import 'package:controlla/shared/auth/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel, EventList, WeekdayFormat;
 import 'package:flutter_calendar_carousel/classes/event.dart';
-import 'package:intl/intl.dart' show DateFormat;
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class MonthPaidPage extends StatefulWidget {
@@ -28,6 +26,7 @@ class _MonthPaidPageState extends State<MonthPaidPage> {
     events: {},
   );
   String? selectDate;
+  String? selectDatebyuser;
 
   final DateRangePickerController _datePickerController =
       DateRangePickerController();
@@ -59,6 +58,8 @@ class _MonthPaidPageState extends State<MonthPaidPage> {
       inactiveDaysTextStyle: TextStyle(color: Colors.tealAccent, fontSize: 16),
       markedDateIconBorderColor: Constant.primaryColor,
       onDayPressed: (date, events) {
+        selectDatebyuser = date.day.toString();
+        print(date.day);
         selectDate = date.toString().substring(8, 10);
         _markedDateMap.events.clear();
         _markedDateMap.addAll(DateTime(date.year, date.month, date.day), [
@@ -84,56 +85,81 @@ class _MonthPaidPageState extends State<MonthPaidPage> {
       onDayLongPressed: (DateTime date) {
         setState(() {
           _markedDateMap.events.clear();
-          selectDate =null;
+          selectDate = null;
         });
         print('long pressed date $date');
       },
     );
 
     return Scaffold(
-      body: SafeArea(
-          child: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(children: [
-               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.060,
-              ),
-              SizedBox(
-                child: Text(
-                  'Which day of the month do you get paid?',
-                  style: TextStyle(
-                      color: Constant.primaryColor,
-                      fontSize: MediaQuery.of(context).size.height * 0.032,
-                      fontWeight: FontWeight.w700),
-                ),
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.060),
-              _calendarCarouselNoHeader,
-              SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-              selectDate != null
-                  ? SizedBox(
-                      width: MediaQuery.of(context).size.width - 60,
-                      child: FormTextButton(
-                        buttontitle: "Next",
-                        buttontitlestyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500),
-                        onpressed: () {
-                          // Navigator.pushNamed(context, AppRoutes.SelectWeekPaid);
-                          Navigator.pushNamed(
-                              context, AppRoutes.DelayPaymentCheck);
-                        },
-                      ),
-                    )
-                  : SizedBox(width: 0),
-              const SizedBox(height: 20)
-            ]),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        centerTitle: false,
+        bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(1),
+            child: Container(
+              color: Constant.primaryColor,
+              height: 1,
+            )),
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Constant.primaryColor,
           ),
         ),
-      )),
+        title: const Text(
+          "How often do you...",
+          style: TextStyle(color: Constant.primaryColor),
+        ),
+      ),
+      body: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.060,
+                ),
+                SizedBox(
+                  child: Text(
+                    'Which day of the month do you get paid?',
+                    style: TextStyle(
+                        color: Constant.primaryColor,
+                        fontSize: MediaQuery.of(context).size.height * 0.032,
+                        fontWeight: FontWeight.w700),
+                  ),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.060),
+                _calendarCarouselNoHeader,
+                Spacer(),
+                selectDate != null
+                    ? SizedBox(
+                        width: MediaQuery.of(context).size.width - 60,
+                        child: FormTextButton(
+                          buttontitle: "Next",
+                          buttontitlestyle: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500),
+                          onpressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DelayPaymentCheck(
+                                          selectedDate: selectDatebyuser,
+                                        )));
+                          },
+                        ),
+                      )
+                    : SizedBox(width: 0),
+                const SizedBox(height: 20)
+              ]),
+            ),
+          )),
     );
   }
 }

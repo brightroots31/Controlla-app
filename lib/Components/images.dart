@@ -40,8 +40,8 @@ class Imagesforapp {
   static String swimmingpool = "assets/images/swimmingpool.png";
   static String phonelocation = "assets/images/phonelocation.png";
   static String premium_verion = "assets/images/premiumversion.png";
-  static String dollar_sign = "assets/images/dollar-sign.png";
-  static String runningdays_calander = "assets/images/runningdays.png";
+  static String dollar_sign = "assets/images/dollar_black.png";
+  static String runningdays_calander = "assets/images/running_colured.png";
   static String variable_calander = "assets/images/variable_calander.png";
   static String weekly_calander = "assets/images/weekly_calander.png";
   static String biweekly_calander = "assets/images/biweekly_calander.png";
@@ -52,4 +52,6 @@ class Imagesforapp {
 
   static String delayCheck = "assets/images/delaychec.png";
   static String delayCheckDollar = "assets/images/delaycheckdollar.png";
+  static String salesreprestcalanderabove = "assets/images/salerepresentcalanderabove.png";
+  static String salesreprestcalanderdown = "assets/images/salerepresentcalanderdown.png";
 }

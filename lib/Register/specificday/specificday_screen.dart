@@ -2,8 +2,6 @@ import 'package:controlla/Components/images.dart';
 import 'package:controlla/shared/auth/constant.dart';
 import 'package:controlla/shared/auth/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class SpecificDayScreen extends StatefulWidget {
   const SpecificDayScreen({Key? key}) : super(key: key);
@@ -16,6 +14,30 @@ class _SpecificDayScreenState extends State<SpecificDayScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        centerTitle: false,
+        bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(1),
+            child: Container(
+              color: Constant.primaryColor,
+              height: 1,
+            )),
+        leading: InkWell(
+          onTap: (){
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Constant.primaryColor,
+          ),
+        ),
+        title: const Text(
+          "How often do you...",
+          style: TextStyle(color: Constant.primaryColor),
+        ),
+      ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Center(
@@ -46,7 +68,7 @@ class _SpecificDayScreenState extends State<SpecificDayScreen> {
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Constant.primaryColor)),
                 child: Padding(
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   child: Row(children: [
                     Column(
                       children: [
@@ -77,7 +99,10 @@ class _SpecificDayScreenState extends State<SpecificDayScreen> {
                         ),
                       ],
                     ),
-                    Expanded(child: Image.asset(Imagesforapp.runningdays_calander))
+                    Expanded(
+                        child: Image.asset(
+                      Imagesforapp.runningdays_calander,
+                    ))
                   ]),
                 ),
               ),
@@ -86,7 +111,7 @@ class _SpecificDayScreenState extends State<SpecificDayScreen> {
               height: MediaQuery.of(context).size.height * 0.030,
             ),
             InkWell(
-              onTap: (){
+              onTap: () {
                 //  Navigator.pushNamed(context, AppRoutes.BiWeeklyScreen);
               },
               child: Container(
@@ -95,7 +120,7 @@ class _SpecificDayScreenState extends State<SpecificDayScreen> {
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Constant.primaryColor)),
                 child: Padding(
-                  padding:const EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   child: Row(children: [
                     Column(
                       children: [
@@ -126,12 +151,15 @@ class _SpecificDayScreenState extends State<SpecificDayScreen> {
                         ),
                       ],
                     ),
-                    Expanded(child: Image.asset(Imagesforapp.variable_calander))
+                    Expanded(
+                        child: Image.asset(
+                      Imagesforapp.variable_calander,
+                      color: Constant.primaryColor,
+                    ))
                   ]),
                 ),
               ),
             ),
-            
           ]),
         ),
       )),

@@ -6,6 +6,8 @@ import 'package:controlla/Home/homegoalscreen.dart';
 import 'package:controlla/Home/homescreen.dart';
 import 'package:controlla/Home/infoscreen/infoscreen.dart';
 import 'package:controlla/Home/SettingScreen/settingscreen.dart';
+import 'package:controlla/provider/profile_service.dart';
+import 'package:controlla/shared/auth/constant.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -28,6 +30,13 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  initState(){
+    super.initState();
+    ProfileFirebaseService.getInstance().fetchCustomerUserLoginData();
+
   }
 
   @override
@@ -58,12 +67,12 @@ class _MainScreenState extends State<MainScreen> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: _selectedIndex == 0
-                            ? Color(0xff1EC05D)
+                            ? Constant.primaryColor
                             : Colors.transparent),
                     child: Center(
                       child: Image.asset(
                         Imagesforapp.home_icon,
-                        color: _selectedIndex == 0 ? Colors.white : null,
+                        color: _selectedIndex == 0 ? Colors.white : Constant.primaryColor,
                         height: MediaQuery.of(context).size.height * 0.050,
                       ),
                     )),
@@ -76,12 +85,12 @@ class _MainScreenState extends State<MainScreen> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: _selectedIndex == 1
-                            ? Color(0xff1EC05D)
+                            ?    Constant.primaryColor
                             : Colors.transparent),
                     child: Center(
                       child: Image.asset(
                         Imagesforapp.goal_icon,
-                        color: _selectedIndex == 1 ? Colors.white : null,
+                        color: _selectedIndex == 1 ? Colors.white : Constant.primaryColor,
                         height: MediaQuery.of(context).size.height * 0.050,
                       ),
                     )),
@@ -94,13 +103,14 @@ class _MainScreenState extends State<MainScreen> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: _selectedIndex == 2
-                            ? Color(0xff1EC05D)
+                            ?  Constant.primaryColor
                             : Colors.transparent),
                     child: Center(
                       child: Image.asset(
                         _selectedIndex == 2
                             ? Imagesforapp.selected_loctionicon
                             : Imagesforapp.unselected_locationicon,
+                          color:  _selectedIndex == 2 ? Colors.white : Constant.primaryColor,
                         height: MediaQuery.of(context).size.height * 0.050,
                       ),
                     )),
@@ -113,12 +123,12 @@ class _MainScreenState extends State<MainScreen> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: _selectedIndex == 3
-                            ? Color(0xff1EC05D)
+                            ?    Constant.primaryColor
                             : Colors.transparent),
                     child: Center(
                       child: Image.asset(
                         Imagesforapp.info_icon,
-                        color: _selectedIndex == 3 ? Colors.white : null,
+                        color: _selectedIndex == 3 ? Colors.white : Constant.primaryColor,
                         height: MediaQuery.of(context).size.height * 0.050,
                       ),
                     )),
@@ -131,12 +141,12 @@ class _MainScreenState extends State<MainScreen> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: _selectedIndex == 4
-                            ? Color(0xff1EC05D)
+                            ?  Constant.primaryColor
                             : Colors.transparent),
                     child: Center(
                       child: Image.asset(
                         Imagesforapp.setting_icon,
-                        color: _selectedIndex == 4 ? Colors.white : null,
+                        color: _selectedIndex == 4 ? Colors.white : Constant.primaryColor,
                         height: MediaQuery.of(context).size.height * 0.050,
                       ),
                     )),

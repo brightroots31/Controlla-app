@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "456687196787",
+    "project_id": "controlla-a",
+    "storage_bucket": "controlla-a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456687196787:android:388b9753b69af31187a806",
+        "android_client_info": {
+          "package_name": "com.example.controlla"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456687196787-n7500rssvq52548ceu0mgq4jk1jn8v2r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.controlla",
+            "certificate_hash": "6308dad8ef38d16125ae35b701d44e1965c13d99"
+          }
+        },
+        {
+          "client_id": "456687196787-u04ffld7rs79lakg819jc4prsdrqlf41.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuU6HTVwdY9H7_PVwMB3InwO8Rp_AuD_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456687196787-u04ffld7rs79lakg819jc4prsdrqlf41.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
