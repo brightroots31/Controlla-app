@@ -10,35 +10,39 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class DelayPaymentCheck extends StatefulWidget {
   final selectedDate;
-  
+
   const DelayPaymentCheck({Key? key, this.selectedDate}) : super(key: key);
 
   @override
   State<DelayPaymentCheck> createState() => _DelayPaymentCheckState();
 }
- 
+
 class _DelayPaymentCheckState extends State<DelayPaymentCheck> {
   bool? onpresseds;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getdetails();
   }
-  void getdetails()async{
+
+  void getdetails() async {
 // onpressed
 // Obtain shared preferences.
-final prefs = await SharedPreferences.getInstance();
-final bool? repeat = prefs.getBool('onpressed');
-setState(() {
-  onpresseds = repeat;
-});
+    final prefs = await SharedPreferences.getInstance();
+    final bool? repeat = prefs.getBool('onpressed');
+    setState(() {
+      onpresseds = repeat;
+    });
   }
-  int  onpressed = 3;
+
+  int onpressed = 3;
+
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.height/7);
-    print(MediaQuery.of(context).size.width/3);
+    print(MediaQuery.of(context).size.height / 7);
+    print(MediaQuery.of(context).size.width / 3);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -51,7 +55,7 @@ setState(() {
               height: 1,
             )),
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Navigator.pop(context);
           },
           child: const Icon(
@@ -70,7 +74,6 @@ setState(() {
         },
         child: Consumer<RegisterProvider>(builder: (context, provider, child) {
           return SafeArea(
-            
               child: SingleChildScrollView(
             child: Center(
               child: Padding(
@@ -96,12 +99,13 @@ setState(() {
                     height: MediaQuery.of(context).size.height * 0.08,
                   ),
                   GestureDetector(
-                    onTap: () async{
+                    onTap: () async {
                       provider.UpdateRegisterDataMonthly(
                           widget.selectedDate, "1 month of delay");
-                        Navigator.pushReplacementNamed(context, AppRoutes.CongratsScreen);
-                        final prefs = await SharedPreferences.getInstance();
-                        await prefs.setBool('onpressed', true);
+                      Navigator.pushReplacementNamed(
+                          context, AppRoutes.CongratsScreen);
+                      final prefs = await SharedPreferences.getInstance();
+                      await prefs.setBool('onpressed', true);
                       setState(() {
                         onpressed = 0;
                       });
@@ -110,22 +114,20 @@ setState(() {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
-                            color: onpresseds == true 
+                            color: onpresseds == true
                                 ? Colors.black
                                 : Colors.transparent,
                             width: 0.2),
                         boxShadow: onpresseds == true
                             ? [
-                              BoxShadow(
+                                BoxShadow(
                                   color: Colors.grey.withOpacity(0.1),
                                   spreadRadius: 1,
                                   blurRadius: 1,
                                   offset: const Offset(0, 1),
                                 ),
-                            ]
-                            : [
-                                
-                              ],
+                              ]
+                            : [],
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -157,12 +159,13 @@ setState(() {
                   ),
                   SizedBox(height: 16),
                   GestureDetector(
-                    onTap: () async{
+                    onTap: () async {
                       provider.UpdateRegisterDataMonthly(
                           widget.selectedDate, "No delay");
-                        Navigator.pushReplacementNamed(context, AppRoutes.CongratsScreen);
-                        final prefs = await SharedPreferences.getInstance();
-                        await prefs.setBool('onpressed', false);
+                      Navigator.pushReplacementNamed(
+                          context, AppRoutes.CongratsScreen);
+                      final prefs = await SharedPreferences.getInstance();
+                      await prefs.setBool('onpressed', false);
                       setState(() {
                         onpressed = 2;
                       });
@@ -177,16 +180,14 @@ setState(() {
                             width: 0.2),
                         boxShadow: onpresseds == false
                             ? [
-                              BoxShadow(
+                                BoxShadow(
                                   color: Colors.grey.withOpacity(0.1),
                                   spreadRadius: 1,
                                   blurRadius: 1,
                                   offset: const Offset(0, 1),
                                 ),
-                            ]
-                            : [
-                                
-                              ],
+                              ]
+                            : [],
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -229,8 +230,8 @@ setState(() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-          height: MediaQuery.of(context).size.height/7,
-        width: MediaQuery.of(context).size.width/3,
+        height: MediaQuery.of(context).size.height / 7,
+        width: MediaQuery.of(context).size.width / 3,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -251,8 +252,8 @@ setState(() {
         child: Image(
           image: AssetImage(images),
           color: Constant.primaryColor,
-          height: MediaQuery.of(context).size.height/7,
-        width: MediaQuery.of(context).size.width/3,
+          height: MediaQuery.of(context).size.height / 7,
+          width: MediaQuery.of(context).size.width / 3,
         ));
   }
 }

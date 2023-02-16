@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_final_fields, depend_on_referenced_packages
+// ignore_for_file: prefer_final_fields, depend_on_referenced_packages, prefer_const_constructors
 
 import 'package:controlla/Components/formtextbutton.dart';
 import 'package:controlla/Components/images.dart';
@@ -14,6 +14,7 @@ import 'package:intl/intl.dart' show DateFormat;
 
 class BiWeeklyCalander extends StatefulWidget {
   final index;
+
   const BiWeeklyCalander({Key? key, this.index}) : super(key: key);
 
   @override
@@ -26,16 +27,19 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
   int number = 1;
   Widget _eventIcon = Transform.scale(
     scale: 0.45,
+    alignment: Alignment.center,
     child: const CircleAvatar(
       backgroundColor: Colors.grey,
     ),
   );
   Widget _eventIcons = Transform.scale(
-    scale: 0.8,
+    scale: 0.70,
+    alignment: Alignment.topLeft,
     child: const CircleAvatar(
       backgroundColor: Constant.primaryColor,
     ),
   );
+
   @override
   initState() {
     super.initState();
@@ -102,49 +106,49 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
       setState(() {
         nextweek =
             firstsunday.add(const Duration(days: 21, hours: 23, minutes: 59));
-            selectedDay = "Sunday";
+        selectedDay = "Sunday";
       });
     }
     if (widget.index == 1) {
       setState(() {
         nextweek =
             firstsunday.add(const Duration(days: 22, hours: 23, minutes: 59));
-            selectedDay = "Monday";
+        selectedDay = "Monday";
       });
     }
     if (widget.index == 2) {
       setState(() {
         nextweek =
             firstsunday.add(const Duration(days: 23, hours: 23, minutes: 59));
-            selectedDay = "Tuesday";
+        selectedDay = "Tuesday";
       });
     }
     if (widget.index == 3) {
       setState(() {
         nextweek =
             firstsunday.add(const Duration(days: 24, hours: 23, minutes: 59));
-            selectedDay = "Wednesday";
+        selectedDay = "Wednesday";
       });
     }
     if (widget.index == 4) {
       setState(() {
         nextweek =
             firstsunday.add(const Duration(days: 25, hours: 23, minutes: 59));
-            selectedDay = "Thursday";
+        selectedDay = "Thursday";
       });
     }
     if (widget.index == 5) {
       setState(() {
         nextweek =
             firstsunday.add(const Duration(days: 26, hours: 23, minutes: 59));
-            selectedDay = "Friday";
+        selectedDay = "Friday";
       });
     }
     if (widget.index == 6) {
       setState(() {
         nextweek =
             firstsunday.add(const Duration(days: 27, hours: 23, minutes: 59));
-            selectedDay = "Saturday";
+        selectedDay = "Saturday";
       });
     }
     _markedDateMap
@@ -166,17 +170,19 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
   DateTime _targetDateTime = DateTime.now();
   int id = 0;
 
-
   final EventList<Event> _markedDateMap = EventList<Event>(
     events: {},
   );
 
   final DateRangePickerController _datePickerController =
       DateRangePickerController();
+
   @override
   Widget build(BuildContext context) {
     final _calendarCarouselNoHeader = CalendarCarousel<Event>(
       isScrollable: false,
+      dayButtonColor: Colors.transparent,
+      daysTextStyle: TextStyle(color: Colors.transparent),
       selectedDayButtonColor: Colors.transparent,
       selectedDayBorderColor: Colors.transparent,
       todayBorderColor: Colors.transparent,
@@ -276,7 +282,8 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
           create: (context) {
             return RegisterProvider();
           },
-          child: Consumer<RegisterProvider>(builder: ((context, provider, child) {
+          child:
+              Consumer<RegisterProvider>(builder: ((context, provider, child) {
             return SafeArea(
               child: SingleChildScrollView(
                   child: Center(
@@ -341,9 +348,7 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
                             setState(() {
                               _markedDateMap.clear();
                             });
-                            getdate(
-                              number,
-                            );
+                            getdate(number);
                             setState(() {
                               number == 1 ? null : number++;
                             });
@@ -366,8 +371,7 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
                       ],
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.055,
-                    ),
+                        height: MediaQuery.of(context).size.height * 0.055),
                     SizedBox(
                         width: MediaQuery.of(context).size.width - 40,
                         child: FormTextButton(
@@ -375,7 +379,8 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
                           buttontitlestyle: const TextStyle(
                               color: Colors.white, fontWeight: FontWeight.w600),
                           onpressed: () {
-                            provider.UpdateRegisterDataBiweeklyEveryOtherWeek(selectedDay);
+                            provider.UpdateRegisterDataBiweeklyEveryOtherWeek(
+                                selectedDay);
                             Navigator.pushReplacementNamed(
                                 context, AppRoutes.CongratsScreen);
                           },

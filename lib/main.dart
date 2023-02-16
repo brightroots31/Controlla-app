@@ -11,9 +11,9 @@ import 'package:firebase_core/firebase_core.dart';
 // import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main()async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+ await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -68,6 +68,7 @@ class _SlplashScreenState extends State<SlplashScreen> {
       Future.delayed(Duration(seconds: 2)).then((value) {
         Navigator.pushReplacementNamed(context, AppRoutes.LoginPage);
       });
+
     } else {
       Navigator.of(context).popUntil((route) => route.isFirst);
       Future.delayed(Duration(seconds: 2)).then((value) {

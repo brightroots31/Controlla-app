@@ -54,6 +54,7 @@ class ProfileFirebaseService {
     LocalDataSaver.saveUserEmail(userALlDetailsList[0]["email"]);
     LocalDataSaver.saveUserPassword(userALlDetailsList[0]["password"]);
     LocalDataSaver.saveUserPaidPerc(userALlDetailsList[0]["getPaid"]);
+    LocalDataSaver.saveUserSelectWeekDay(userALlDetailsList[0]["weekly"]["selectedDay"]);
     await fetchDataSF();
     return userALlDetailsList;
   }

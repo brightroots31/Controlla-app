@@ -9,6 +9,7 @@ class LocalDataSaver {
   static String userUidKey = "userUidKey";
   static String userPasswordKey = "userPasswordKey";
   static String userPaidPercKey = "userPaidPercKey";
+  static String userSelectWeekDayKey = "userSelectWeekDayKey";
   static String userLogKey = "UserLogKey";
 
   static Future<bool> saveUserName(String? userName) async {
@@ -83,6 +84,17 @@ class LocalDataSaver {
     return preferences.getString(userPaidPercKey);
   }
 
+  static Future<bool> saveUserSelectWeekDay(String? userSelectWeekDay) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return await preferences.setString(
+        userSelectWeekDayKey, userSelectWeekDay!);
+  }
+
+  static Future<String?> getUserSelectWeekDay() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getString(userSelectWeekDayKey);
+  }
+
   static Future<bool> saveUserLogData(bool isUserLoggedIn) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return await preferences.setBool(userLogKey, isUserLoggedIn);
@@ -104,4 +116,6 @@ Future<void> fetchDataSF() async {
   ProfileDetails.userProfilePosition =
       (await LocalDataSaver.getUserProfilePosition());
   ProfileDetails.userPaidPerc = (await LocalDataSaver.getUserPaidPerc());
+  ProfileDetails.userSelectWeekDay =
+      (await LocalDataSaver.getUserSelectWeekDay());
 }

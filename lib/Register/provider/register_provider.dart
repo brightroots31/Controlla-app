@@ -9,6 +9,7 @@ class RegisterProvider extends ChangeNotifier {
     RegisterFirebaseService.getInstance()
         .registerWithEmail(emailaddress, password, context, name);
     notifyListeners();
+
     return null;
   }
 

@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field, no_leading_underscores_for_local_identifiers, unnecessary_this, avoid_print, depend_on_referenced_packages, prefer_final_fields
+// ignore_for_file: unused_field, no_leading_underscores_for_local_identifiers, unnecessary_this, avoid_print, depend_on_referenced_packages, prefer_final_fields, prefer_const_constructors
 
 import 'package:controlla/Components/formtextbutton.dart';
 import 'package:controlla/Components/images.dart';
@@ -26,14 +26,18 @@ class _PaymentWeekState extends State<PaymentWeek> {
   late DateTime nextweek;
   Widget _eventIcon = Transform.scale(
     scale: 0.45,
+    alignment: Alignment.center,
     child: const CircleAvatar(
       backgroundColor: Colors.grey,
     ),
   );
   Widget _eventIcons = Transform.scale(
-    scale: 0.79,
-    child: const CircleAvatar(
-      backgroundColor: Constant.primaryColor,
+    scale: 0.70,
+    alignment: Alignment.topLeft,
+    child: Center(
+      child:  CircleAvatar(
+        backgroundColor: Constant.primaryColor,
+      ),
     ),
   );
   @override
@@ -165,6 +169,8 @@ class _PaymentWeekState extends State<PaymentWeek> {
     final _calendarCarouselNoHeader = CalendarCarousel<Event>(
       isScrollable: false,
       showOnlyCurrentMonthDate: true,
+      dayButtonColor: Colors.transparent,
+      daysTextStyle: TextStyle(color: Colors.transparent),
       selectedDayButtonColor: Colors.transparent,
       selectedDayBorderColor: Colors.transparent,
       todayBorderColor: Colors.transparent,

@@ -117,8 +117,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               Fluttertoast.showToast(msg: "Please enter Name");
                             } else if (_email.text.toString().trim().isEmpty) {
                               Fluttertoast.showToast(msg: "Please Enter email");
-                            } else if (!GetUtils.isEmail(
-                                _email.text.toString().trim())) {
+                            } else if ((!GetUtils.isEmail(
+                                    _email.text.toString().trim()) ||
+                                !(_email.text
+                                    .trim()
+                                    .toString()
+                                    .endsWith("@gmail.com")))) {
                               Fluttertoast.showToast(
                                   msg: "Please Enter valid email");
                             } else if (_password.text

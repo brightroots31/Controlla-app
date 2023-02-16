@@ -111,7 +111,8 @@ class _BiWeeklyScreenState extends State<BiWeeklyScreen> {
               ),
               InkWell(
                 onTap: (){
-                  Navigator.pushNamed(context, AppRoutes.BiweeklyDateSelectedCalander);
+                  // Navigator.pushNamed(context, AppRoutes.BiweeklyDateSelectedCalander);
+                  Navigator.pushNamed(context, AppRoutes.BiweeklyTwiceInMonth);
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width - 40,

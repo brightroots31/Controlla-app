@@ -1,32 +1,31 @@
-// ignore_for_file: prefer_final_fields, prefer_const_constructors
+// ignore_for_file: prefer_final_fields, no_leading_underscores_for_local_identifiers
 
 import 'package:controlla/Components/formtextbutton.dart';
 import 'package:controlla/Register/biweekly/sale_represent.dart';
 import 'package:controlla/shared/auth/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/classes/event.dart';
+import 'package:flutter_calendar_carousel/classes/event_list.dart';
 import 'package:flutter_calendar_carousel/classes/marked_date.dart';
 import 'package:flutter_calendar_carousel/classes/multiple_marked_dates.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-class BiWeeklyDateSelectedCalander extends StatefulWidget {
-  const BiWeeklyDateSelectedCalander({Key? key}) : super(key: key);
+class BiweeklyTwiceInMonth extends StatefulWidget {
+  const BiweeklyTwiceInMonth({Key? key}) : super(key: key);
 
   @override
-  State<BiWeeklyDateSelectedCalander> createState() =>
-      _BiWeeklyDateSelectedCalanderState();
+  State<BiweeklyTwiceInMonth> createState() => _BiweeklyTwiceInMonthState();
 }
 
-class _BiWeeklyDateSelectedCalanderState
-    extends State<BiWeeklyDateSelectedCalander> {
-  String daterangetype = "Weekly";
+class _BiweeklyTwiceInMonthState extends State<BiweeklyTwiceInMonth> {
   int selecteDate = 0;
   final DateTime _currentDate = DateTime.now();
   final DateTime _currentDate2 = DateTime.now();
   final DateTime _targetDateTime = DateTime.now();
   int id = 0;
   String? selectDate;
+  String? secondDate;
 
   EventList<Event> _markedDateMap = EventList<Event>(
     events: {},
@@ -36,7 +35,6 @@ class _BiWeeklyDateSelectedCalanderState
     markedDates: [],
   );
 
-
   final DateRangePickerController _datePickerController =
       DateRangePickerController();
 
@@ -45,11 +43,16 @@ class _BiWeeklyDateSelectedCalanderState
     final _calendarCarouselNoHeader = CalendarCarousel<Event>(
       selectedDayButtonColor: Colors.transparent,
       // selectedDayButtonColor: Colors.grey,
+
       selectedDayBorderColor: Constant.primaryColor,
       // selectedDayBorderColor: Colors.black,
+
       todayBorderColor: Constant.primaryColor,
       // todayBorderColor: Colors.white,
-      todayButtonColor: Colors.white,
+
+      // todayButtonColor: Colors.white,
+      todayButtonColor: Colors.transparent,
+
       todayTextStyle: const TextStyle(color: Colors.black),
       thisMonthDayBorderColor: Constant.primaryColor,
       weekDayFormat: WeekdayFormat.narrow,
@@ -60,7 +63,7 @@ class _BiWeeklyDateSelectedCalanderState
       showOnlyCurrentMonthDate: true,
       weekendTextStyle: const TextStyle(color: Colors.black),
       weekFormat: false,
-      markedDatesMap: _markedDateMap,
+      // markedDatesMap: _markedDateMap,
       height: 320.0,
       selectedDateTime: _currentDate2,
       targetDateTime: _targetDateTime,
@@ -76,39 +79,41 @@ class _BiWeeklyDateSelectedCalanderState
       onDayPressed: (date, events) {
         setState(() {
           selecteDate = date.day;
+          secondDate = (DateTime(date.year, date.month, date.day + 15)
+              .toString()
+              .substring(8, 10));
         });
         selectDate = date.toString().substring(8, 10);
+
         _markedDateMap.events.clear();
         _multipleDateMap.markedDates.clear();
-        print((DateTime(date.year, date.month + 1, 0).day).toInt());
+        // print((DateTime(date.year, date.month + 1, 0).day).toInt());
         // ((DateTime(date.year, date.month + 1, 0).day).toInt() - 15) >= selecteDate?
 
-            // _multipleDateMap.addAll([
-            //     MarkedDate(
-            //         color: Colors.grey,
-            //         date: DateTime(date.year, date.month, date.day),
-            //         textStyle: TextStyle(color: Colors.black)),
-            //     MarkedDate(
-            //         color: Colors.grey,
-            //         date: DateTime(date.year, date.month, date.day + 15),
-            //         textStyle: TextStyle(color: Colors.black)),
-            //   ]);
-            // : null;
-        print(
-            "selecteDate1:${date.day}    ${DateTime(date.year, date.month, date.day + 15).toString().substring(8, 10)}");
-
-        _markedDateMap.addAll(DateTime(date.year, date.month, date.day), [
-          Event(
-            date: DateTime(date.year, date.month, date.day),
-            title: 'eve',
-            icon: Transform.scale(
-                scale: 1,
-                child: CircleAvatar(
-                    backgroundColor: Constant.primaryColor,
-                    child: Text("$selectDate",
-                        style: TextStyle(color: Colors.white)))),
-          )
+        _multipleDateMap.addAll([
+          MarkedDate(
+              color: Colors.grey,
+              date: DateTime(date.year, date.month, date.day),
+              textStyle: TextStyle(color: Colors.black)),
+          MarkedDate(
+              color: Colors.grey,
+              date: DateTime(date.year, date.month, date.day + 15),
+              textStyle: TextStyle(color: Colors.black)),
         ]);
+        // : null;
+
+        // _markedDateMap.addAll(DateTime(date.year, date.month, date.day), [
+        //   Event(
+        //     date: DateTime(date.year, date.month, date.day),
+        //     title: 'eve',
+        //     icon: Transform.scale(
+        //         scale: 1,
+        //         child: CircleAvatar(
+        //             backgroundColor: Constant.primaryColor,
+        //             child: Text("$selectDate",
+        //                 style: TextStyle(color: Colors.white)))),
+        //   )
+        // ]);
         setState(() {});
       },
       markedDateShowIcon: true,
@@ -119,6 +124,7 @@ class _BiWeeklyDateSelectedCalanderState
         setState(() {
           _markedDateMap.events.clear();
           selectDate = null;
+          secondDate = null;
           _multipleDateMap.markedDates.clear();
         });
         print('long pressed date $date');
@@ -159,7 +165,7 @@ class _BiWeeklyDateSelectedCalanderState
             ),
             SizedBox(
               child: Text(
-                'Which day of the month do you get paid?',
+                'Which two days of the month do you get paid?',
                 style: TextStyle(
                     color: Constant.primaryColor,
                     fontSize: MediaQuery.of(context).size.height * 0.032,
@@ -185,7 +191,7 @@ class _BiWeeklyDateSelectedCalanderState
                             context,
                             MaterialPageRoute(
                                 builder: (context) => SaleRepresent(
-                                      selectdate: selecteDate,
+                                      selectdate: "$selecteDate - $secondDate",
                                     )));
                         // Navigator.pushNamed(
                         //     context, AppRoutes.DelayPaymentCheck);

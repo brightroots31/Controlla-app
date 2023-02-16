@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:controlla/Home/SettingScreen/accountsettingscreen.dart';
 import 'package:controlla/Home/SettingScreen/premiumversion.dart';
 import 'package:controlla/Home/SettingScreen/termsandconditionscreen.dart';
+import 'package:controlla/Home/home_calendar_page.dart';
 import 'package:controlla/Home/infoscreen/hoteldetail.dart';
 import 'package:controlla/Home/infoscreen/hotelscreen.dart';
 import 'package:controlla/Home/infoscreen/infoscreen.dart';
@@ -13,6 +14,7 @@ import 'package:controlla/Home/mainscreen.dart';
 import 'package:controlla/Login/loginscreen.dart';
 import 'package:controlla/Register/biweekly/biweekly_calander.dart';
 import 'package:controlla/Register/biweekly/biweekly_dateselectcalander.dart';
+import 'package:controlla/Register/biweekly/biweekly_twice_in_month.dart';
 import 'package:controlla/Register/biweekly/biweekly_screen.dart';
 import 'package:controlla/Register/biweekly/sale_represent.dart';
 import 'package:controlla/Register/congrats_for_sellscreen.dart';
@@ -63,6 +65,8 @@ class AppRoutes {
    static const String SaleRepresent = "Sale represent";
    static const String MonthWeekSelect="MonthWeekSelect";
    static const String ResetPassword="ResetPassword";
+   static const String BiweeklyTwiceInMonth="BiweeklyTwiceInMonth";
+   static const String HomeCalendarPage="HomeCalendarPage";
 }
 
 Map<String, WidgetBuilder> routes = {
@@ -95,4 +99,6 @@ Map<String, WidgetBuilder> routes = {
   AppRoutes.SaleRepresent:(context)=> const SaleRepresent(),
   AppRoutes.MonthWeekSelect:(context)=> const MonthWeekSelect(),
   AppRoutes.ResetPassword:(context)=> const ResetPassword(),
+  AppRoutes.BiweeklyTwiceInMonth:(context)=> const BiweeklyTwiceInMonth(),
+  AppRoutes.HomeCalendarPage:(context)=> const HomeCalendarPage(),
 };

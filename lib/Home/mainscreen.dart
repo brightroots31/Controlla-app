@@ -2,6 +2,7 @@
 
 import 'package:controlla/Components/images.dart';
 import 'package:controlla/Home/addsalesandawardscreen.dart';
+import 'package:controlla/Home/home_calendar_page.dart';
 import 'package:controlla/Home/homegoalscreen.dart';
 import 'package:controlla/Home/homescreen.dart';
 import 'package:controlla/Home/infoscreen/infoscreen.dart';
@@ -18,11 +19,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
   static const List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     GoalScreen(),
-    AddSalesandAward(),
+    // AddSalesandAward(),
+    HomeCalendarPage(),
     InfoScreen(),
     SettingScreen()
   ];
