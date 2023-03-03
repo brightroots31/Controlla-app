@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_final_fields, depend_on_referenced_packages, prefer_const_constructors
+// ignore_for_file: prefer_final_fields, depend_on_referenced_packages, prefer_const_constructors, unnecessary_this, no_leading_underscores_for_local_identifiers, avoid_print, avoid_function_literals_in_foreach_calls
 
 import 'package:controlla/Components/formtextbutton.dart';
 import 'package:controlla/Components/images.dart';
@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:provider/provider.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
 class BiWeeklyCalander extends StatefulWidget {
@@ -174,13 +173,9 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
     events: {},
   );
 
-  final DateRangePickerController _datePickerController =
-      DateRangePickerController();
-
   @override
   Widget build(BuildContext context) {
     final _calendarCarouselNoHeader = CalendarCarousel<Event>(
-      isScrollable: false,
       dayButtonColor: Colors.transparent,
       daysTextStyle: TextStyle(color: Colors.transparent),
       selectedDayButtonColor: Colors.transparent,
@@ -188,6 +183,43 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
       todayBorderColor: Colors.transparent,
       markedDateIconBorderColor: Colors.transparent,
       showOnlyCurrentMonthDate: true,
+      isScrollable: false,
+      // dayPadding: 0.0,
+      daysHaveCircularBorder: true,
+      weekFormat: false,
+      showHeader: false,
+      markedDateShowIcon: true,
+      weekdayTextStyle: const TextStyle(color: Constant.primaryColor),
+      weekendTextStyle: const TextStyle(color: Colors.black),
+      markedDatesMap: _markedDateMap,
+      height: 320.0,
+      selectedDateTime: _currentDate2,
+      targetDateTime: _targetDateTime,
+      weekDayFormat: WeekdayFormat.narrow,
+      customGridViewPhysics: const NeverScrollableScrollPhysics(),
+      todayTextStyle: TextStyle(
+        color: DateTime.now().weekday == 6 || DateTime.now().weekday == 7
+            ? Colors.red
+            : Colors.black,
+      ),
+      markedDateIconBuilder: (event) {
+        return event.icon;
+      },
+      todayButtonColor: Colors.transparent,
+      selectedDayTextStyle: const TextStyle(
+        color: Colors.transparent,
+        // color: Colors.black,
+      ),
+      minSelectedDate: _currentDate.subtract(const Duration(days: 360)),
+      maxSelectedDate: _currentDate.add(const Duration(days: 360)),
+      prevDaysTextStyle: const TextStyle(
+        fontSize: 16,
+        color: Colors.transparent,
+      ),
+      inactiveDaysTextStyle: const TextStyle(
+        color: Colors.tealAccent,
+        fontSize: 16,
+      ),
       onDayPressed: (date, events) {
         print(date);
         events.isEmpty
@@ -208,40 +240,6 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
         this.setState(() => _currentDate2 = date);
         events.forEach((event) => print(event.title));
       },
-      daysHaveCircularBorder: true,
-      weekdayTextStyle: const TextStyle(color: Constant.primaryColor),
-      weekendTextStyle: const TextStyle(color: Colors.black),
-      weekFormat: false,
-      markedDatesMap: _markedDateMap,
-      height: 320.0,
-      selectedDateTime: _currentDate2,
-      targetDateTime: _targetDateTime,
-      weekDayFormat: WeekdayFormat.narrow,
-      customGridViewPhysics: const NeverScrollableScrollPhysics(),
-      showHeader: false,
-      todayTextStyle: TextStyle(
-        color: DateTime.now().weekday == 6 || DateTime.now().weekday == 7
-            ? Colors.red
-            : Colors.black,
-      ),
-      markedDateShowIcon: true,
-      markedDateIconBuilder: (event) {
-        return event.icon;
-      },
-      todayButtonColor: Colors.transparent,
-      selectedDayTextStyle: const TextStyle(
-        color: Colors.black,
-      ),
-      minSelectedDate: _currentDate.subtract(const Duration(days: 360)),
-      maxSelectedDate: _currentDate.add(const Duration(days: 360)),
-      prevDaysTextStyle: const TextStyle(
-        fontSize: 16,
-        color: Colors.transparent,
-      ),
-      inactiveDaysTextStyle: const TextStyle(
-        color: Colors.tealAccent,
-        fontSize: 16,
-      ),
       onCalendarChanged: (DateTime date) {
         print(date);
         this.setState(() {
@@ -283,7 +281,7 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
             return RegisterProvider();
           },
           child:
-              Consumer<RegisterProvider>(builder: ((context, provider, child) {
+              Consumer<RegisterProvider>(builder: (context, provider, child) {
             return SafeArea(
               child: SingleChildScrollView(
                   child: Center(
@@ -389,7 +387,7 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
                 ),
               )),
             );
-          })),
+          }),
         ));
   }
 }

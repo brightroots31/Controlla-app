@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, avoid_print, no_leading_underscores_for_local_identifiers, unused_field, prefer_final_fields, unnecessary_this, prefer_const_literals_to_create_immutables, unnecessary_new, prefer_is_empty
 
+import 'package:controlla/provider/profile_service.dart';
 import 'package:controlla/shared/auth/constant.dart';
+import 'package:controlla/shared/auth/local_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
@@ -35,7 +37,7 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
     ),
   );
 
-  Widget _eventIconBlue = Transform.scale(
+  Widget _eventIconBlueR = Transform.scale(
     scale: 0.25,
     alignment: Alignment.bottomRight,
     child: CircleAvatar(
@@ -43,95 +45,141 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
     ),
   );
 
-  fetchData() {
-    totalDays = DateTime(DateTime.now().year, DateTime.now().month + 1, 0).day;
-    // _multipleDateMap.markedDates.clear();
-    _markedDateMap.events.clear();
-    for (int i = 1; i <= totalDays; i++) {
-      if (ProfileDetails.userSelectWeekDay ==
-          DateFormat('EEEE')
-              .format(DateTime(DateTime.now().year, DateTime.now().month, i))) {
-        // _multipleDateMap.addAll([
-        //   MarkedDate(
-        //       id: i,
-        //       color: Colors.transparent,
-        //       date: DateTime(DateTime.now().year, DateTime.now().month, i),
-        //       textStyle: TextStyle(color: Colors.black)),
-        // ]);
+  Widget _eventIconBlueC = Transform.scale(
+    scale: 0.25,
+    alignment: Alignment.bottomCenter,
+    child: CircleAvatar(
+      backgroundColor: Constant.blueColor,
+    ),
+  );
+  List greenList = [];
 
-        _markedDateMap
-            .addAll(DateTime(DateTime.now().year, DateTime.now().month, i), [
-          Event(
-            date: DateTime(DateTime.now().year, DateTime.now().month, i),
-            title: 'eve',
-            // id: i.toInt(),
-            icon: _eventIconGreen,
-            // dot: CircleAvatar(
-            //   backgroundColor: Colors.red,
-            //   foregroundColor: Colors.red,
-            //   radius: 50,
-            // ),
-          ),
-        ]);
-        _markedDateMap
-            .addAll(DateTime(DateTime.now().year, DateTime.now().month, 6), [
-          Event(
-            date: DateTime(DateTime.now().year, DateTime.now().month, 6),
-            title: 'eve',
-            icon: _eventIconBlue,
-          ),
-        ]);
-        _markedDateMap
-            .addAll(DateTime(DateTime.now().year, DateTime.now().month, 7), [
-          Event(
-            date: DateTime(DateTime.now().year, DateTime.now().month, 7),
-            title: 'eve',
-            icon: _eventIconBlue,
-          ),
-        ]);
-        _markedDateMap
-            .addAll(DateTime(DateTime.now().year, DateTime.now().month, 9), [
-          Event(
-            date: DateTime(DateTime.now().year, DateTime.now().month, 9),
-            title: 'eve',
-            icon: _eventIconBlue,
-          ),
-        ]);
-        _markedDateMap
-            .addAll(DateTime(DateTime.now().year, DateTime.now().month, 10), [
-          Event(
-            date: DateTime(DateTime.now().year, DateTime.now().month, 10),
-            title: 'eve',
-            icon: _eventIconBlue,
+  fetchData() async {
+    ProfileDetails.userSelectWeekDay =
+        await LocalDataSaver.getUserSelectWeekDay();
+    await fetchDataSF();
+    setState(() {
+      totalDays =
+          DateTime(DateTime.now().year, DateTime.now().month + 1, 0).day;
+      _markedDateMap.events.clear();
+      if (totalDays != null || ProfileDetails.userSelectWeekDay == null) {
+        setState(() {
+          for (int i = 1; i <= totalDays; i++) {
+            if (ProfileDetails.userSelectWeekDay ==
+                DateFormat('EEEE').format(
+                    DateTime(DateTime.now().year, DateTime.now().month, i))) {
+              _markedDateMap.addAll(
+                  DateTime(DateTime.now().year, DateTime.now().month, i), [
+                Event(
+                  date: DateTime(DateTime.now().year, DateTime.now().month, i),
+                  title: 'eve',
+                  id: i,
+                  icon: _eventIconGreen,
+                ),
+              ]);
+              greenList.clear();
+              for (var element in _markedDateMap.events.entries) {
+                for (var elements in element.value) {
+                  greenList.add(elements.date.day.toInt());
+                }
+              }
+            }
+          }
+          for (int i = 1; i <= totalDays; i++) {
+            for (int j = 0; j < blueDotList.length; j++) {
+              if (blueDotList[j] ==
+                  int.parse(
+                      DateTime(DateTime.now().year, DateTime.now().month, i)
+                          .toString()
+                          .substring(8, 10))) {
+                // for (var greenListElement in greenList) {
+                //   for (var blueDotListElement in blueDotList) {
+                //     if (greenListElement == blueDotListElement) {
+                //       print("$greenListElement==$blueDotListElement");
+                //       setState(() {});
+                //       _markedDateMap.addAll(
+                //         DateTime(DateTime.now().year, DateTime.now().month,
+                //             greenListElement),
+                //         [
+                //           Event(
+                //             date: DateTime(DateTime.now().year,
+                //                 DateTime.now().month, greenListElement),
+                //             title: 'eve',
+                //             icon: _eventIconBlueR,
+                //           ),
+                //         ],
+                //       );
+                //
+                //     } else {
+                //       _markedDateMap.addAll(
+                //           DateTime(DateTime.now().year, DateTime.now().month,
+                //               blueDotListElement),
+                //           [
+                //             Event(
+                //               date: DateTime(DateTime.now().year,
+                //                   DateTime.now().month, blueDotListElement),
+                //               title: 'eve',
+                //               icon: _eventIconBlueC,
+                //             ),
+                //           ]);
+                //     }
+                //   }
+                // }
 
-          ),
-        ]);
+                _markedDateMap.addAll(
+                    DateTime(DateTime.now().year, DateTime.now().month,
+                        blueDotList[j]),
+                    [
+                      Event(
+                        date: DateTime(DateTime.now().year,
+                            DateTime.now().month, blueDotList[j]),
+                        id: blueDotList[j],
+                        title: 'eve',
+                        icon: _eventIconBlueR,
+                      ),
+                    ]);
+                break;
+              }
+            }
+          }
+        });
+      } else {
+        totalDays =
+            DateTime(DateTime.now().year, DateTime.now().month + 1, 0).day;
+        fetchDataSF();
+        fetchDays();
       }
-    }
-    // print("_multipleDateMap::${_multipleDateMap.markedDates.length}");
+
+      print("_multipleDateMap::${_markedDateMap.events.length}");
+    });
   }
 
   var totalDays;
 
-  fetchDays() {
+  fetchDays() async {
+    await ProfileFirebaseService.getInstance().fetchCustomerUserLoginData();
+    await fetchDataSF();
     totalDays = DateTime(DateTime.now().year, DateTime.now().month + 1, 0).day;
-    fetchData();
+    // fetchData();
   }
 
   @override
   void initState() {
-    _markedDateMap;
-    // _multipleDateMap;
-    fetchDays();
-    totalDays == null ? fetchDays() : fetchData();
+    ProfileFirebaseService.getInstance().fetchCustomerUserLoginData();
+    fetchData();
+    // fetchDays();
+    // totalDays == null ? fetchDays() : fetchData();
+    // fetchData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    _markedDateMap;
-    // _multipleDateMap;
-    fetchDays();
+    if (ProfileDetails.userSelectWeekDay == null ||
+        _markedDateMap.events.length == 0) {
+      fetchDataSF();
+      fetchData();
+    }
     final _calendarCarouselNoHeader = CalendarCarousel<Event>(
       selectedDayButtonColor: Colors.transparent,
       // selectedDayButtonColor: Constant.primaryColor,
@@ -147,13 +195,14 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
       dayPadding: 0.0,
       markedDateIconMargin: 10,
       markedDateIconOffset: 0.1,
+
       // markedDateMoreShowTotal: true,
       daysHaveCircularBorder: false,
       showOnlyCurrentMonthDate: true,
       weekFormat: false,
       markedDateShowIcon: true,
       showHeader: false,
-      shouldShowTransform: true,
+      shouldShowTransform: false,
       staticSixWeekFormat: true,
       showIconBehindDayText: true,
       markedDatesMap: _markedDateMap,
@@ -188,81 +237,104 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              SizedBox(height: 10),
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    // _targetDateTime = DateTime(
-                    //     _targetDateTime.year, _targetDateTime.month - 1);
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: 10),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      // _targetDateTime = DateTime(
+                      //     _targetDateTime.year, _targetDateTime.month - 1);
 
-                    _targetDateTime = DateTime.now();
-                    _currentMonth = DateFormat.yMMMM().format(_targetDateTime);
-                    _currentDate = DateTime.now();
-                    _currentMonthNo = DateTime.now().month.toString();
-                    // _currentMonth =
-                    //     DateFormat.yMMM().format(_targetDateTime);
-                  });
-                },
-                child: Row(
+                      _targetDateTime = DateTime.now();
+                      _currentMonth =
+                          DateFormat.yMMMM().format(_targetDateTime);
+                      _currentDate = DateTime.now();
+                      _currentMonthNo = DateTime.now().month.toString();
+                      // _currentMonth =
+                      //     DateFormat.yMMM().format(_targetDateTime);
+                    });
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(width: 10),
+                      Text(
+                        // DateFormat.yMMMM().format(DateTime.now()),
+                        _currentMonth,
+                        style: TextStyle(fontSize: 20.0),
+                      ),
+                      SizedBox(width: 10),
+                      Icon(Icons.keyboard_arrow_down_rounded, size: 30)
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text("S", key: Key("Sunday")),
+                      Text("M", key: Key("Monday")),
+                      Text("T", key: Key("Tuesday")),
+                      Text("W", key: Key("Wednesday")),
+                      Text("T", key: Key("Thursday")),
+                      Text("F", key: Key("Friday")),
+                      Text("S", key: Key("Saturday")),
+                    ]),
+                SizedBox(height: 20),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    SizedBox(width: 30),
+                    Text(_currentMonth,
+                        style: TextStyle(
+                            fontSize: 20.0, fontWeight: FontWeight.bold)),
                     SizedBox(width: 10),
-                    Text(
-                      DateFormat.yMMMM().format(DateTime.now()),
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                    SizedBox(width: 10),
-                    Icon(Icons.keyboard_arrow_down_rounded, size: 30)
                   ],
                 ),
-              ),
-              SizedBox(height: 30),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-                Text("S", key: Key("Sunday")),
-                Text("M", key: Key("Monday")),
-                Text("T", key: Key("Tuesday")),
-                Text("W", key: Key("Wednesday")),
-                Text("T", key: Key("Thursday")),
-                Text("F", key: Key("Friday")),
-                Text("S", key: Key("Saturday")),
-              ]),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(width: 30),
-                  Text(_currentMonth,
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold)),
-                  SizedBox(width: 10),
-                ],
-              ),
-              _calendarCarouselNoHeader,
-              Row(
-                children: [
-                  SizedBox(width: 10),
-                  Text(
-                    "Total sold: \$27$_currentMonthNo.900 USD",
-                    style: TextStyle(color: Constant.blueColor),
-                  ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  SizedBox(width: 10),
-                  Text("Total received: \$12$_currentMonthNo.900 MXN",
-                      style: TextStyle(color: Constant.greenColor)),
-                ],
-              ),
-            ],
+                _calendarCarouselNoHeader,
+                Row(
+                  children: [
+                    SizedBox(width: 10),
+                    Text(
+                      "Total sold: \$27$_currentMonthNo.900 USD",
+                      style: TextStyle(color: Constant.blueColor),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    SizedBox(width: 10),
+                    Text("Total received: \$12$_currentMonthNo.900 MXN",
+                        style: TextStyle(color: Constant.greenColor)),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
+
+  List blueDotList = [
+    1,
+    2,
+    5,
+    7,
+    11,
+    13,
+    15,
+    17,
+    19,
+    23,
+    25,
+    27,
+    28,
+    31,
+  ];
 }

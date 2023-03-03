@@ -237,4 +237,26 @@ class RegisterFirebaseService {
       print("updateRegisterUserPassword error===>$e");
     }
   }
+
+  Future? updateRegisterSaleUserPosition(userPos, userPerc, userSale) async {
+    final name = await LocalDataSaver.getUserName();
+    try {
+      final auth = FirebaseAuth.instance.currentUser;
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(auth!.uid)
+          .update({
+        "email": auth.email,
+        "userName": name,
+        "userUid": auth.uid,
+        "userSaleData": {
+          "userSalePosition": userPos,
+          "userSalePer": "$userPerc%",
+          "userTotalSell": userSale,
+        }
+      });
+    } catch (e) {
+      print("===$e");
+    }
+  }
 }

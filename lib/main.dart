@@ -11,9 +11,9 @@ import 'package:firebase_core/firebase_core.dart';
 // import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 
-void main()async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- await Firebase.initializeApp();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -56,6 +56,7 @@ class _SlplashScreenState extends State<SlplashScreen> {
     await LocalDataSaver.getUserLogData().then((value) {
       setState(() {
         value == null ? LocalDataSaver.saveUserLogData(false) : isLogin = value;
+
         decideScreen();
       });
     });
@@ -64,11 +65,9 @@ class _SlplashScreenState extends State<SlplashScreen> {
   void decideScreen() async {
     if (isLogin == false) {
       Navigator.of(context).popUntil((route) => route.isFirst);
-
       Future.delayed(Duration(seconds: 2)).then((value) {
         Navigator.pushReplacementNamed(context, AppRoutes.LoginPage);
       });
-
     } else {
       Navigator.of(context).popUntil((route) => route.isFirst);
       Future.delayed(Duration(seconds: 2)).then((value) {

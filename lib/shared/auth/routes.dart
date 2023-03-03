@@ -1,7 +1,5 @@
 // ignore_for_file: constant_identifier_names
 
-import 'dart:math';
-
 import 'package:controlla/Home/SettingScreen/accountsettingscreen.dart';
 import 'package:controlla/Home/SettingScreen/premiumversion.dart';
 import 'package:controlla/Home/SettingScreen/termsandconditionscreen.dart';
@@ -14,8 +12,8 @@ import 'package:controlla/Home/mainscreen.dart';
 import 'package:controlla/Login/loginscreen.dart';
 import 'package:controlla/Register/biweekly/biweekly_calander.dart';
 import 'package:controlla/Register/biweekly/biweekly_dateselectcalander.dart';
-import 'package:controlla/Register/biweekly/biweekly_twice_in_month.dart';
 import 'package:controlla/Register/biweekly/biweekly_screen.dart';
+import 'package:controlla/Register/biweekly/biweekly_twice_in_month.dart';
 import 'package:controlla/Register/biweekly/sale_represent.dart';
 import 'package:controlla/Register/congrats_for_sellscreen.dart';
 import 'package:controlla/Register/congrats_screen.dart';
@@ -33,6 +31,8 @@ import 'package:controlla/Register/select_week.dart';
 import 'package:controlla/Register/specificday/specificday_screen.dart';
 import 'package:controlla/Register/startdate_screen.dart';
 import 'package:controlla/main.dart';
+import 'package:controlla/new_pages/how_much_sell_page.dart';
+import 'package:controlla/new_pages/position_choose_page.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -54,19 +54,21 @@ class AppRoutes {
   static const String HotelScreen = "Hotel Screen";
   static const String InfoScreen = "Info Screen";
   static const String InfoSettingScreen = "Info Setting";
-  static const String PaymentWeek ="Payment week";
+  static const String PaymentWeek = "Payment week";
   static const String SelectWeekPaid = "Select week";
   static const String BiWeeklyScreen = "Biweekly screen";
-  static const String BiWeeklyCalander= "Biweekly calander";
-  static const String SpecificDayScreen= "Specific screen";
-   static const String MonthpaidPage= "Monthpaid page";
-   static const String DelayPaymentCheck= "delay ";
-   static const String BiweeklyDateSelectedCalander= "BiweeklyDateCalander ";
-   static const String SaleRepresent = "Sale represent";
-   static const String MonthWeekSelect="MonthWeekSelect";
-   static const String ResetPassword="ResetPassword";
-   static const String BiweeklyTwiceInMonth="BiweeklyTwiceInMonth";
-   static const String HomeCalendarPage="HomeCalendarPage";
+  static const String BiWeeklyCalander = "Biweekly calander";
+  static const String SpecificDayScreen = "Specific screen";
+  static const String MonthpaidPage = "Monthpaid page";
+  static const String DelayPaymentCheck = "delay ";
+  static const String BiweeklyDateSelectedCalander = "BiweeklyDateCalander ";
+  static const String SaleRepresent = "Sale represent";
+  static const String MonthWeekSelect = "MonthWeekSelect";
+  static const String ResetPassword = "ResetPassword";
+  static const String BiweeklyTwiceInMonth = "BiweeklyTwiceInMonth";
+  static const String HomeCalendarPage = "HomeCalendarPage";
+  static const String HowMuchSellPage = "HowMuchSellPage";
+  static const String PositionChoosePage = "PositionChoosePage";
 }
 
 Map<String, WidgetBuilder> routes = {
@@ -89,16 +91,19 @@ Map<String, WidgetBuilder> routes = {
   AppRoutes.InfoScreen: (context) => const InfoScreen(),
   AppRoutes.InfoSettingScreen: (context) => const InfoSettingScreen(),
   AppRoutes.PaymentWeek: (context) => const PaymentWeek(),
-  AppRoutes.SelectWeekPaid: (context)=> const SelectWeekPaid(),
-  AppRoutes.BiWeeklyScreen:(context) => const BiWeeklyScreen(),
-  AppRoutes.BiWeeklyCalander:(context) => const BiWeeklyCalander(),
-  AppRoutes.SpecificDayScreen:(context)=> const SpecificDayScreen(),
-  AppRoutes.MonthpaidPage:(context)=> const MonthPaidPage(),
-  AppRoutes.DelayPaymentCheck:(context)=> const DelayPaymentCheck(),
-  AppRoutes.BiweeklyDateSelectedCalander:(context)=> const BiWeeklyDateSelectedCalander(),
-  AppRoutes.SaleRepresent:(context)=> const SaleRepresent(),
-  AppRoutes.MonthWeekSelect:(context)=> const MonthWeekSelect(),
-  AppRoutes.ResetPassword:(context)=> const ResetPassword(),
-  AppRoutes.BiweeklyTwiceInMonth:(context)=> const BiweeklyTwiceInMonth(),
-  AppRoutes.HomeCalendarPage:(context)=> const HomeCalendarPage(),
+  AppRoutes.SelectWeekPaid: (context) => const SelectWeekPaid(),
+  AppRoutes.BiWeeklyScreen: (context) => const BiWeeklyScreen(),
+  AppRoutes.BiWeeklyCalander: (context) => const BiWeeklyCalander(),
+  AppRoutes.SpecificDayScreen: (context) => const SpecificDayScreen(),
+  AppRoutes.MonthpaidPage: (context) => const MonthPaidPage(),
+  AppRoutes.DelayPaymentCheck: (context) => const DelayPaymentCheck(),
+  AppRoutes.BiweeklyDateSelectedCalander: (context) =>
+      const BiWeeklyDateSelectedCalander(),
+  AppRoutes.SaleRepresent: (context) => const SaleRepresent(),
+  AppRoutes.MonthWeekSelect: (context) => const MonthWeekSelect(),
+  AppRoutes.ResetPassword: (context) => const ResetPassword(),
+  AppRoutes.BiweeklyTwiceInMonth: (context) => const BiweeklyTwiceInMonth(),
+  AppRoutes.HomeCalendarPage: (context) => const HomeCalendarPage(),
+  AppRoutes.HowMuchSellPage: (context) => const HowMuchSellPage(),
+  AppRoutes.PositionChoosePage: (context) => const PositionChoosePage(),
 };

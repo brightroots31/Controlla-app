@@ -12,6 +12,7 @@ class GoalScreen extends StatefulWidget {
 
 class _GoalScreenState extends State<GoalScreen> {
   int _currentindex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +23,7 @@ class _GoalScreenState extends State<GoalScreen> {
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.065,
-              decoration: const BoxDecoration(
-                color: Constant.primaryColor
-              ),
+              decoration: const BoxDecoration(color: Constant.primaryColor),
               child: Center(
                 child: Text(
                   'Goal',
@@ -54,7 +53,8 @@ class _GoalScreenState extends State<GoalScreen> {
                 ],
               ),
               child: Center(
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     InkWell(
                       onTap: () {
@@ -63,7 +63,7 @@ class _GoalScreenState extends State<GoalScreen> {
                         });
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width /2.5,
+                        width: MediaQuery.of(context).size.width / 2.5,
                         height: MediaQuery.of(context).size.height * 0.070,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
@@ -91,7 +91,7 @@ class _GoalScreenState extends State<GoalScreen> {
                         });
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width /1.9,
+                        width: MediaQuery.of(context).size.width / 1.95,
                         height: MediaQuery.of(context).size.height * 0.070,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
@@ -112,14 +112,14 @@ class _GoalScreenState extends State<GoalScreen> {
                         ),
                       ),
                     ),
-                   
                   ],
                 ),
               ),
             ),
-            _currentindex == 0 ? goaldata() : Container(),
-            _currentindex == 1 ? perofrmencedata() : Container(),
-            _currentindex == 2 ? awardsdata() : Container(),
+            _currentindex == 0? goaldata() : _currentindex == 1 ? perofrmencedata(): awardsdata(),
+            // _currentindex == 0 ? goaldata() : Container(),
+            // _currentindex == 1 ? perofrmencedata() : Container(),
+            // _currentindex == 2 ? awardsdata() : Container(),
           ],
         )),
       )),
@@ -137,9 +137,10 @@ class _GoalScreenState extends State<GoalScreen> {
           child: Text(
             'HOW MUCH DO YOU WANT TO SELL?',
             style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.017,
-                fontWeight: FontWeight.bold,
-                color: Constant.primaryColor,),
+              fontSize: MediaQuery.of(context).size.height * 0.017,
+              fontWeight: FontWeight.bold,
+              color: Constant.primaryColor,
+            ),
           ),
         ),
         const SizedBox(
@@ -257,7 +258,7 @@ class _GoalScreenState extends State<GoalScreen> {
                   BoxShadow(
                     color: Colors.black.withOpacity(0.2),
                     spreadRadius: 1,
-                    blurRadius: 4,   
+                    blurRadius: 4,
                     offset: const Offset(0, 1),
                   ),
                 ],
@@ -311,9 +312,10 @@ class _GoalScreenState extends State<GoalScreen> {
           child: Text(
             'HOW MUCH DO YOU WANT TO EARN?',
             style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.017,
-                fontWeight: FontWeight.bold,
-                color: Constant.primaryColor,),
+              fontSize: MediaQuery.of(context).size.height * 0.017,
+              fontWeight: FontWeight.bold,
+              color: Constant.primaryColor,
+            ),
           ),
         ),
         const SizedBox(
@@ -331,7 +333,7 @@ class _GoalScreenState extends State<GoalScreen> {
               color: Colors.white,
             ),
             child: Center(
-                child: Row(         
+                child: Row(
               children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.050,
@@ -384,9 +386,10 @@ class _GoalScreenState extends State<GoalScreen> {
           child: Text(
             'Volume',
             style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.017,
-                fontWeight: FontWeight.bold,
-                color: Constant.primaryColor,),
+              fontSize: MediaQuery.of(context).size.height * 0.017,
+              fontWeight: FontWeight.bold,
+              color: Constant.primaryColor,
+            ),
           ),
         ),
         const SizedBox(
@@ -404,9 +407,10 @@ class _GoalScreenState extends State<GoalScreen> {
           child: Text(
             'Income',
             style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.017,
-                fontWeight: FontWeight.bold,
-                color: Constant.primaryColor,),
+              fontSize: MediaQuery.of(context).size.height * 0.017,
+              fontWeight: FontWeight.bold,
+              color: Constant.primaryColor,
+            ),
           ),
         ),
         const SizedBox(
@@ -421,7 +425,7 @@ class _GoalScreenState extends State<GoalScreen> {
         ),
         Text(
           'Ops!',
-          style: TextStyle( 
+          style: TextStyle(
               fontSize: MediaQuery.of(context).size.height * 0.019,
               fontWeight: FontWeight.w600),
         ),
@@ -442,8 +446,9 @@ class _GoalScreenState extends State<GoalScreen> {
           width: MediaQuery.of(context).size.width * 0.30,
           height: MediaQuery.of(context).size.height * 0.070,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Constant.primaryColor,),
+            borderRadius: BorderRadius.circular(5),
+            color: Constant.primaryColor,
+          ),
           child: Center(
             child: Text(
               'Learn more about',
@@ -471,17 +476,19 @@ class _GoalScreenState extends State<GoalScreen> {
               Text(
                 'Awards',
                 style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.height * 0.017,
-                    fontWeight: FontWeight.bold,
-                    color: Constant.primaryColor,),
+                  fontSize: MediaQuery.of(context).size.height * 0.017,
+                  fontWeight: FontWeight.bold,
+                  color: Constant.primaryColor,
+                ),
               ),
               const Spacer(),
               Text(
                 'Available',
                 style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.height * 0.017,
-                    fontWeight: FontWeight.bold,
-                    color: Constant.primaryColor,),
+                  fontSize: MediaQuery.of(context).size.height * 0.017,
+                  fontWeight: FontWeight.bold,
+                  color: Constant.primaryColor,
+                ),
               ),
             ],
           ),

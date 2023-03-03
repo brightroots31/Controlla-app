@@ -49,6 +49,7 @@ class RegisterProvider extends ChangeNotifier {
 
   Future? updateRegisterUserPositionData(posUser) {
     notifyListeners();
+
     RegisterFirebaseService.getInstance().updateRegisterUserPosition(posUser);
     notifyListeners();
   }
@@ -63,18 +64,30 @@ class RegisterProvider extends ChangeNotifier {
       emailaddress, password, context, name) async {
     try {
       notifyListeners();
-   await   RegisterFirebaseService.getInstance()
+      await RegisterFirebaseService.getInstance()
           .registerWithEmail(emailaddress, password, context, name);
       notifyListeners();
+      print("RegisterWithEmailUsingFirebase login success");
       return "login";
     } catch (e) {
+      print("RegisterWithEmailUsingFirebase error: $e");
       return "error";
     }
   }
 
-  Future? updateRegisterUserPassword(userPassword,context)async {
+  Future? updateRegisterUserPassword(userPassword, context) async {
     notifyListeners();
-    await RegisterFirebaseService.getInstance().updateRegisterUserPassword(userPassword,context);
+    await RegisterFirebaseService.getInstance()
+        .updateRegisterUserPassword(userPassword, context);
+
+    notifyListeners();
+  }
+
+  Future? updateRegisterSaleUserPosition(userPos, userPer, userSale) async {
+    print("$userPos   $userPer   $userSale");
+    notifyListeners();
+    await RegisterFirebaseService.getInstance()
+        .updateRegisterSaleUserPosition(userPos, userPer, userSale);
     notifyListeners();
   }
 }

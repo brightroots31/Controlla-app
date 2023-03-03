@@ -68,9 +68,7 @@ class _AddSalesandAwardState extends State<AddSalesandAward> {
                 )),
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.050,
-            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.050),
             SizedBox(
               width: MediaQuery.of(context).size.width - 40,
               child: Column(children: [
@@ -126,7 +124,7 @@ class _AddSalesandAwardState extends State<AddSalesandAward> {
                   children: [
                     CircleAvatar(
                       radius: MediaQuery.of(context).size.height * 0.058,
-                      backgroundColor:Constant.primaryColor,
+                      backgroundColor: Constant.primaryColor,
                       child: Center(
                           child: Text(
                         '4',
@@ -252,8 +250,9 @@ class _AddSalesandAwardState extends State<AddSalesandAward> {
               width: MediaQuery.of(context).size.width - 60,
               height: MediaQuery.of(context).size.height * 0.069,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Constant.primaryColor,),
+                borderRadius: BorderRadius.circular(5),
+                color: Constant.primaryColor,
+              ),
               child: Center(
                   child: Text(
                 "Done",

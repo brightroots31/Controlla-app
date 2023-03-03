@@ -112,7 +112,7 @@ class _SpecificDayScreenState extends State<SpecificDayScreen> {
             ),
             InkWell(
               onTap: () {
-                //  Navigator.pushNamed(context, AppRoutes.BiWeeklyScreen);
+                Navigator.pushReplacementNamed(context, AppRoutes.CongratsScreen);
               },
               child: Container(
                 width: MediaQuery.of(context).size.width - 40,

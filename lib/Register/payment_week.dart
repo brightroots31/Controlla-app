@@ -14,6 +14,7 @@ import 'package:intl/intl.dart' show DateFormat;
 
 class PaymentWeek extends StatefulWidget {
   final index;
+
   const PaymentWeek({Key? key, this.index}) : super(key: key);
 
   @override
@@ -35,17 +36,16 @@ class _PaymentWeekState extends State<PaymentWeek> {
     scale: 0.70,
     alignment: Alignment.topLeft,
     child: Center(
-      child:  CircleAvatar(
+      child: CircleAvatar(
         backgroundColor: Constant.primaryColor,
       ),
     ),
   );
+
   @override
   initState() {
     super.initState();
-    getdates(
-      0,
-    );
+    getdates(0);
   }
 
   void getdates(
@@ -164,6 +164,7 @@ class _PaymentWeekState extends State<PaymentWeek> {
 
   final DateRangePickerController _datePickerController =
       DateRangePickerController();
+
   @override
   Widget build(BuildContext context) {
     final _calendarCarouselNoHeader = CalendarCarousel<Event>(
@@ -175,6 +176,25 @@ class _PaymentWeekState extends State<PaymentWeek> {
       selectedDayBorderColor: Colors.transparent,
       todayBorderColor: Colors.transparent,
       markedDateIconBorderColor: Colors.transparent,
+      daysHaveCircularBorder: true,
+      weekdayTextStyle: const TextStyle(color: Constant.primaryColor),
+      weekendTextStyle: const TextStyle(color: Colors.black),
+      weekFormat: false,
+      markedDatesMap: _markedDateMap,
+      height: 320.0,
+      selectedDateTime: _currentDate2,
+      targetDateTime: _targetDateTime,
+      weekDayFormat: WeekdayFormat.narrow,
+      customGridViewPhysics: const NeverScrollableScrollPhysics(),
+      showHeader: false,
+      todayTextStyle: TextStyle(
+          color: DateTime.now().weekday == 6 || DateTime.now().weekday == 7
+              ? Colors.red
+              : Colors.black),
+      markedDateShowIcon: true,
+      markedDateIconBuilder: (event) {
+        return event.icon;
+      },
       onDayPressed: (date, events) {
         events.isEmpty
             ? id == 4
@@ -194,29 +214,10 @@ class _PaymentWeekState extends State<PaymentWeek> {
         this.setState(() => _currentDate2 = date);
         events.forEach((event) => print(event.title));
       },
-      daysHaveCircularBorder: true,
-      weekdayTextStyle: const TextStyle(color: Constant.primaryColor),
-      weekendTextStyle: const TextStyle(color: Colors.black),
-      weekFormat: false,
-      markedDatesMap: _markedDateMap,
-      height: 320.0,
-      selectedDateTime: _currentDate2,
-      targetDateTime: _targetDateTime,
-      weekDayFormat: WeekdayFormat.narrow,
-      customGridViewPhysics: const NeverScrollableScrollPhysics(),
-      showHeader: false,
-      todayTextStyle: TextStyle(
-        color: DateTime.now().weekday == 6 || DateTime.now().weekday == 7
-            ? Colors.red
-            : Colors.black,
-      ),
-      markedDateShowIcon: true,
-      markedDateIconBuilder: (event) {
-        return event.icon;
-      },
       todayButtonColor: Colors.transparent,
       selectedDayTextStyle: const TextStyle(
-        color: Colors.black,
+        color: Colors.transparent,
+        // color: Colors.black,
       ),
       minSelectedDate: _currentDate.subtract(const Duration(days: 360)),
       maxSelectedDate: _currentDate.add(const Duration(days: 360)),

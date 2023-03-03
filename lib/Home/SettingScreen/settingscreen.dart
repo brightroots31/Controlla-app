@@ -16,6 +16,7 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+  bool isLogout = false;
   List titleofbutton = [
     "Tiago",
     "Account setting",
@@ -24,7 +25,7 @@ class _SettingScreenState extends State<SettingScreen> {
     "Term and conditions",
     "Premium version",
     "Contact",
-    "Logout"
+    "Logout",
   ];
   List buttonimage = [
     Imagesforapp.tiago,
@@ -65,6 +66,10 @@ class _SettingScreenState extends State<SettingScreen> {
                           children: [
                             InkWell(
                               onTap: () {
+                                // index == 0
+                                //     ? Navigator.pushNamed(
+                                //         context, AppRoutes.HowMuchSellPage)
+                                //     : null;
                                 index == 1
                                     ? Navigator.pushNamed(
                                         context, AppRoutes.AccountSettingScreen)
@@ -188,10 +193,30 @@ class _SettingScreenState extends State<SettingScreen> {
     );
   }
 
+  Widget buildVisibility() {
+    return Visibility(
+        visible: isLogout,
+        child: Scaffold(
+          backgroundColor: Colors.black38,
+          body: Center(
+              child: const CircularProgressIndicator(
+            color: Constant.primaryColor,
+          )),
+        ));
+  }
+
   Future? _logOut() async {
+    setState(() {
+      isLogout = true;
+    });
     LocalDataSaver.saveUserLogData(false);
     await fetchDataSF();
     await FirebaseAuth.instance.signOut();
+    await removeDataSF();
+    Navigator.of(context).popUntil((route) => route.isFirst);
+    setState(() {
+      isLogout = false;
+    });
     Navigator.pushReplacementNamed(context, AppRoutes.LoginPage);
   }
 }

@@ -9,7 +9,6 @@ import 'package:controlla/shared/auth/local_database.dart';
 import 'package:controlla/shared/auth/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get_utils/get_utils.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -116,33 +115,38 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             if (_name.text.toString().trim().isEmpty) {
                               Fluttertoast.showToast(msg: "Please enter Name");
                             } else if (_email.text.toString().trim().isEmpty) {
-                              Fluttertoast.showToast(msg: "Please Enter email");
-                            } else if ((!GetUtils.isEmail(
-                                    _email.text.toString().trim()) ||
-                                !(_email.text
-                                    .trim()
-                                    .toString()
-                                    .endsWith("@gmail.com")))) {
+                              Fluttertoast.showToast(msg: "Please enter Email");
+                            } else if (RegExp(
+                                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                        .hasMatch(_email.text.trim()) ==
+                                    false
+
+                                // !(_email.text
+                                //     .trim()
+                                //     .toString()
+                                //     .contains("@"))
+                                // .endsWith(".com")))
+                                ) {
                               Fluttertoast.showToast(
-                                  msg: "Please Enter valid email");
+                                  msg: "Please enter valid Email ");
                             } else if (_password.text
                                 .toString()
                                 .trim()
                                 .isEmpty) {
                               Fluttertoast.showToast(
-                                  msg: "Please enter password");
+                                  msg: "Please enter Password");
                             } else if (_password.text.length < 8) {
                               Fluttertoast.showToast(
-                                  msg: "Please enter 8 digit password");
+                                  msg: "Please enter 8 digit Password");
                             } else if (_confirmPassword.text
                                 .toString()
                                 .trim()
                                 .isEmpty) {
                               Fluttertoast.showToast(
-                                  msg: "Please enter confirm password");
+                                  msg: "Please enter Confirm Password");
                             } else if (_confirmPassword.text.length < 8) {
                               Fluttertoast.showToast(
-                                  msg: "Please enter 8 digit confirm password");
+                                  msg: "Please enter 8 digit Confirm Password");
                             } else if (_password.text.toString().trim() !=
                                 _confirmPassword.text.toString().trim()) {
                               Fluttertoast.showToast(

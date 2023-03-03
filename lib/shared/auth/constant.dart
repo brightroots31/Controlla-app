@@ -20,3 +20,4 @@ class ProfileDetails {
   static String? userPaidPerc;
   static String? userSelectWeekDay;
 }
+

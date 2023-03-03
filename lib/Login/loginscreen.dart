@@ -115,6 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                         width: MediaQuery.of(context).size.width - 80,
                         child: FormTextButton(
+
                           buttontitle: "Register new account",
                           buttontitlestyle: TextStyle(
                               color: Colors.white,
@@ -125,6 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             setState(() {
                               isloader = false;
                             });
+
                             Navigator.pushNamed(
                                 context, AppRoutes.RegisterPage);
                           },

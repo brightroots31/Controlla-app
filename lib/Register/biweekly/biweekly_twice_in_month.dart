@@ -64,6 +64,7 @@ class _BiweeklyTwiceInMonthState extends State<BiweeklyTwiceInMonth> {
       weekendTextStyle: const TextStyle(color: Colors.black),
       weekFormat: false,
       // markedDatesMap: _markedDateMap,
+
       height: 320.0,
       selectedDateTime: _currentDate2,
       targetDateTime: _targetDateTime,
@@ -128,6 +129,7 @@ class _BiweeklyTwiceInMonthState extends State<BiweeklyTwiceInMonth> {
           _multipleDateMap.markedDates.clear();
         });
         print('long pressed date $date');
+
       },
     );
     return Scaffold(

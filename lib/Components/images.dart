@@ -7,10 +7,8 @@ class Imagesforapp {
   static String congratulation = "assets/images/congratulation_image.png";
   static String congrats_for_sell = "assets/images/congrats_for_sell.png";
   static String goal_icon = "assets/images/goal_icon.png";
-  static String selected_loctionicon =
-      "assets/images/selected_locationicon.png";
-  static String unselected_locationicon =
-      "assets/images/unselected_locationicon.png";
+  static String selected_loctionicon = "assets/images/selected_locationicon.png";
+  static String unselected_locationicon = "assets/images/unselected_locationicon.png";
   static String info_icon = "assets/images/info_icon.png";
   static String setting_icon = "assets/images/setting_icon.png";
   static String home_icon = "assets/images/home_icon.png";
@@ -49,9 +47,9 @@ class Imagesforapp {
   static String specificday_calander = "assets/images/specificday_calander.png";
   static String everyweek_calander = "assets/images/everyweek_calander.png";
   static String twiceamonth_calander = "assets/images/twiceamonth_calander.png";
-
   static String delayCheck = "assets/images/delaychec.png";
   static String delayCheckDollar = "assets/images/delaycheckdollar.png";
   static String salesreprestcalanderabove = "assets/images/salerepresentcalanderabove.png";
   static String salesreprestcalanderdown = "assets/images/salerepresentcalanderdown.png";
+
 }

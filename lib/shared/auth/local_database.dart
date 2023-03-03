@@ -110,12 +110,23 @@ Future<void> fetchDataSF() async {
   ProfileDetails.userName = (await LocalDataSaver.getUserName());
   ProfileDetails.userUid = (await LocalDataSaver.getUserUid());
   ProfileDetails.userEmail = (await LocalDataSaver.getUserEmail());
-  ProfileDetails.userMobileNumber =
-      (await LocalDataSaver.getUserMobileNumber());
+  ProfileDetails.userMobileNumber = (await LocalDataSaver.getUserMobileNumber());
   ProfileDetails.userPassword = (await LocalDataSaver.getUserPassword());
-  ProfileDetails.userProfilePosition =
-      (await LocalDataSaver.getUserProfilePosition());
+  ProfileDetails.userProfilePosition = (await LocalDataSaver.getUserProfilePosition());
   ProfileDetails.userPaidPerc = (await LocalDataSaver.getUserPaidPerc());
-  ProfileDetails.userSelectWeekDay =
-      (await LocalDataSaver.getUserSelectWeekDay());
+  ProfileDetails.userSelectWeekDay = (await LocalDataSaver.getUserSelectWeekDay());
+}
+
+Future<void> removeDataSF() async {
+ SharedPreferences preferences=await SharedPreferences.getInstance();
+
+ preferences.remove("userNameKey");
+ preferences.remove("userMobileNumberKey");
+ preferences.remove("userEmailKey");
+ preferences.remove("userProfilePositionKey");
+ preferences.remove("userUidKey");
+ preferences.remove("userPasswordKey");
+ preferences.remove("userPaidPercKey");
+ preferences.remove("userSelectWeekDayKey");
+
 }

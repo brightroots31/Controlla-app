@@ -148,6 +148,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         setState(() {
                           isloader = true;
                         });
+
                         await RegisterFirebaseService.getInstance()
                             .updateRegisterUserPassword(
                                 confirmPassword.text, context);

@@ -14,8 +14,10 @@ class StartDateScreen extends StatefulWidget {
 class _StartDateScreenState extends State<StartDateScreen> {
   String daterangetype = "Weekly";
   int id = 0;
+
   final DateRangePickerController _datePickerController =
       DateRangePickerController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,9 +25,7 @@ class _StartDateScreenState extends State<StartDateScreen> {
           child: SingleChildScrollView(
         child: Center(
           child: Column(children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.060,
-            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.060),
             Text(
               'Which day does your work \nstart?',
               textAlign: TextAlign.center,

@@ -5,4 +5,5 @@ class NavigatortonextPage {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => screenName));
   }
+
 }

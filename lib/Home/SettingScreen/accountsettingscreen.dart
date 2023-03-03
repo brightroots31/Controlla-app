@@ -45,6 +45,7 @@ class _AccountSettingScreenState extends State<AccountSettingScreen> {
                         children: [
                           InkWell(
                             onTap: () {
+
                               Navigator.pop(context);
                             },
                             child: const Icon(
@@ -420,5 +421,6 @@ class _AccountSettingScreenState extends State<AccountSettingScreen> {
 
   calculateStack() {
     stackHeight == 0 ? stackHeight = 110 : stackHeight = 0;
+
   }
 }
