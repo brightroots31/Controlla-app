@@ -19,5 +19,9 @@ class ProfileDetails {
   static String? userPassword;
   static String? userPaidPerc;
   static String? userSelectWeekDay;
+  static String? userSelectRegisterProfile;
+  static String? userSelectMonthlyDate;
+  static String? userSelectBiWeeklyDay;
+  static String? userSelectBiWeeklyTwiceDay;
 }
 

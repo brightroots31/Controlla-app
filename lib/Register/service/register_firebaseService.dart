@@ -56,7 +56,7 @@ class RegisterFirebaseService {
     }
   }
 
-  Future? updateRegisterBiWeeklyEveryWeek(selectedDay) async {
+  Future? updateRegisterBiWeeklyEveryWeek(selectedOtherWeekDay,selectedDays) async {
     final name = await LocalDataSaver.getUserName();
     try {
       final auth = FirebaseAuth.instance.currentUser;
@@ -69,7 +69,8 @@ class RegisterFirebaseService {
         "userName": name,
         "userUid": auth.uid,
         "Bi-Weekly": {
-          "EveryOtherWeek": {"selectedDay": selectedDay}
+          "EveryOtherWeek": {"selectedDay": selectedOtherWeekDay},
+          "SelectedDays":selectedDays
         }
       });
     } catch (e) {
@@ -164,6 +165,7 @@ class RegisterFirebaseService {
               });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
+
         Fluttertoast.showToast(msg: "The password provided is too weak.");
       } else if (e.code == 'email-already-in-use') {
         Fluttertoast.showToast(
@@ -255,6 +257,7 @@ class RegisterFirebaseService {
           "userTotalSell": userSale,
         }
       });
+
     } catch (e) {
       print("===$e");
     }

@@ -18,9 +18,13 @@ class MonthPaidPage extends StatefulWidget {
 
 class _MonthPaidPageState extends State<MonthPaidPage> {
   String daterangetype = "Weekly";
-  DateTime _currentDate = DateTime(2022, 11, 25);
-  DateTime _currentDate2 = DateTime(2022, 11, 30);
-  DateTime _targetDateTime = DateTime(2022, 12, 2);
+  // DateTime _currentDate = DateTime(2022, 11, 25);
+  // DateTime _currentDate2 = DateTime(2022, 11, 30);
+  // DateTime _targetDateTime = DateTime(2022, 12, 2);
+
+  DateTime _currentDate = DateTime.now();
+  DateTime _currentDate2 = DateTime.now();
+  DateTime _targetDateTime = DateTime.now();
   int id = 0;
   EventList<Event> _markedDateMap = EventList<Event>(
     events: {},
@@ -48,6 +52,7 @@ class _MonthPaidPageState extends State<MonthPaidPage> {
       weekFormat: false,
       markedDatesMap: _markedDateMap,
       height: 320.0,
+      dayPadding: 0.01,
       selectedDateTime: _currentDate2,
       targetDateTime: _targetDateTime,
       customGridViewPhysics: NeverScrollableScrollPhysics(),

@@ -19,10 +19,10 @@ class RegisterProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future? UpdateRegisterDataBiweeklyEveryOtherWeek(selectedDay) {
+  Future? UpdateRegisterDataBiweeklyEveryOtherWeek(selectedOtherWeekDay,selectedDays) {
     notifyListeners();
     RegisterFirebaseService.getInstance()
-        .updateRegisterBiWeeklyEveryWeek(selectedDay);
+        .updateRegisterBiWeeklyEveryWeek(selectedOtherWeekDay,selectedDays);
     notifyListeners();
   }
 

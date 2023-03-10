@@ -68,7 +68,7 @@ class _AddSalesandAwardState extends State<AddSalesandAward> {
                 )),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.050),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.040),
             SizedBox(
               width: MediaQuery.of(context).size.width - 40,
               child: Column(children: [

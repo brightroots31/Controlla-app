@@ -64,7 +64,7 @@ class _BiweeklyTwiceInMonthState extends State<BiweeklyTwiceInMonth> {
       weekendTextStyle: const TextStyle(color: Colors.black),
       weekFormat: false,
       // markedDatesMap: _markedDateMap,
-
+dayPadding: 0.01,
       height: 320.0,
       selectedDateTime: _currentDate2,
       targetDateTime: _targetDateTime,
@@ -193,7 +193,7 @@ class _BiweeklyTwiceInMonthState extends State<BiweeklyTwiceInMonth> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => SaleRepresent(
-                                      selectdate: "$selecteDate - $secondDate",
+                                      selectdate: "$selecteDate   -   $secondDate",
                                     )));
                         // Navigator.pushNamed(
                         //     context, AppRoutes.DelayPaymentCheck);

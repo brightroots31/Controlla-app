@@ -31,8 +31,8 @@ import 'package:controlla/Register/select_week.dart';
 import 'package:controlla/Register/specificday/specificday_screen.dart';
 import 'package:controlla/Register/startdate_screen.dart';
 import 'package:controlla/main.dart';
-import 'package:controlla/new_pages/how_much_sell_page.dart';
-import 'package:controlla/new_pages/position_choose_page.dart';
+import 'package:controlla/new_sales_pages/how_much_sell_page.dart';
+import 'package:controlla/new_sales_pages/position_choose_page.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -97,8 +97,7 @@ Map<String, WidgetBuilder> routes = {
   AppRoutes.SpecificDayScreen: (context) => const SpecificDayScreen(),
   AppRoutes.MonthpaidPage: (context) => const MonthPaidPage(),
   AppRoutes.DelayPaymentCheck: (context) => const DelayPaymentCheck(),
-  AppRoutes.BiweeklyDateSelectedCalander: (context) =>
-      const BiWeeklyDateSelectedCalander(),
+  AppRoutes.BiweeklyDateSelectedCalander: (context) =>const BiWeeklyDateSelectedCalander(),
   AppRoutes.SaleRepresent: (context) => const SaleRepresent(),
   AppRoutes.MonthWeekSelect: (context) => const MonthWeekSelect(),
   AppRoutes.ResetPassword: (context) => const ResetPassword(),

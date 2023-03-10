@@ -33,7 +33,7 @@ class ProfileFirebaseService {
       last = data.docs[data.docs.length - 1];
       data.docs.forEach((element) {
         if (element.exists) {
-          print(" ProfileDetails.userUid::${ProfileDetails.userUid}");
+          // print(" ProfileDetails.userUid::${ProfileDetails.userUid}");
           ProfileDetails.userUid == element.id
               ? userALlDetailsList.add(
                   // ProviderJobStatusModel.fromJson(element.data() as Map)
@@ -67,47 +67,55 @@ class ProfileFirebaseService {
     // print("weekly::${userALlDetailsList[0]["weekly"]}");
     // print("Bi-Weekly::${userALlDetailsList[0]["Bi-Weekly"]["EveryOtherWeek"]}");
 
+    fetchCurrentUserLoginData(userALlDetailsList);
+
+    await fetchDataSF();
+    // print("ProfileFirebaseService:: ${ProfileDetails.userSelectBiWeeklyTwiceDay}");
+    return userALlDetailsList;
+  }
+
+  void fetchCurrentUserLoginData(List<dynamic> userALlDetailsList) {
     if (userALlDetailsList[0]["weekly"] != null) {
-      LocalDataSaver.saveUserSelectWeekDay(
-          userALlDetailsList[0]["weekly"]["selectedDay"]);
+      LocalDataSaver.saveUserSelectWeekDay(userALlDetailsList[0]["weekly"]["selectedDay"]);
+      LocalDataSaver.saveUserSelectRegisterProfile("weekly");
       print("weekly format::${userALlDetailsList[0]["weekly"]}");
     }
     else if (userALlDetailsList[0]["Monthly"] != null) {
-      LocalDataSaver.saveUserSelectWeekDay(
-          DateFormat('EEEE').format(DateTime.now()));
+      LocalDataSaver.saveUserSelectWeekDay(DateFormat('EEEE').format(DateTime(DateTime.now().year, DateTime.now().month, int.parse(userALlDetailsList[0]["Monthly"]["selectedDate"]))));
+      LocalDataSaver.saveUserSelectRegisterProfile("Monthly");
+      LocalDataSaver.saveUserSelectMonthlyDay(userALlDetailsList[0]["Monthly"]["selectedDate"]);
       print("Monthly:: ${userALlDetailsList[0]["Monthly"]}");
     }
     else if (userALlDetailsList[0]["Bi-Weekly"] != null) {
       if (userALlDetailsList[0]["Bi-Weekly"]["EveryOtherWeek"] != null) {
-        LocalDataSaver.saveUserSelectWeekDay(userALlDetailsList[0]["Bi-Weekly"]
-            ["EveryOtherWeek"]["selectedDay"]);
-        print(
-            "Bi-Weekly.EveryOtherWeek:: ${userALlDetailsList[0]["Bi-Weekly"]}");
+        LocalDataSaver.saveUserSelectWeekDay(userALlDetailsList[0]["Bi-Weekly"]["EveryOtherWeek"]["selectedDay"]);
+        LocalDataSaver.saveUserSelectRegisterProfile("Bi-Weekly EveryOtherWeek");
+        LocalDataSaver.saveUserSelectBiWeeklyDay(userALlDetailsList[0]["Bi-Weekly"]["SelectedDays"].first.toString());
+        print("Bi-Weekly.EveryOtherWeek:: ${userALlDetailsList[0]["Bi-Weekly"]}");
       }
       else if (userALlDetailsList[0]["Bi-Weekly"]["Twice a month"] != null) {
-        LocalDataSaver.saveUserSelectWeekDay(
-            userALlDetailsList[0]["Bi-Weekly"]["Twice a month"]);
-        print(
-            "Bi-Weekly.TwiceA_Month:: ${userALlDetailsList[0]["Bi-Weekly"]["Twice a month"]}");
-      }}
-    else if (userALlDetailsList[0]["SpecificDay"] != null) {
-      if(userALlDetailsList[0]["SpecificDay"]["Fixed running Days"] !=null){
-      LocalDataSaver.saveUserSelectWeekDay(
-          DateFormat('EEEE').format(DateTime.now()));
-      print("SpecificDay.FixedRunningDays:: ${userALlDetailsList[0]["SpecificDay"]["Fixed running Days"]}");}
-      else{
-        LocalDataSaver.saveUserSelectWeekDay(
-            DateFormat('EEEE').format(DateTime.now()));
-        print("Selected format::::: ${userALlDetailsList[0]["SpecificDay"]}");
-      }}
-    else {
-      LocalDataSaver.saveUserSelectWeekDay(
-          DateFormat('EEEE').format(DateTime.now()));
-      print("Selected format::::: ${userALlDetailsList[0]}");
+        LocalDataSaver.saveUserSelectWeekDay(DateFormat('EEEE').format(DateTime.now()));
+        LocalDataSaver.saveUserSelectBiWeeklyTwiceDay(userALlDetailsList[0]["Bi-Weekly"]["Twice a month"]["selectedDate"].toString().substring(0,3));
+        LocalDataSaver.saveUserSelectRegisterProfile("Bi-Weekly   Twice a month");
+        print("Bi-Weekly.TwiceA_Month:: ${userALlDetailsList[0]["Bi-Weekly"]["Twice a month"]["selectedDate"]}");
+      }
     }
-
-    await fetchDataSF();
-    print("ProfileFirebaseService:: ${ProfileDetails.userSelectWeekDay}");
-    return userALlDetailsList;
+    else if (userALlDetailsList[0]["SpecificDay"] != null) {
+      if (userALlDetailsList[0]["SpecificDay"]["Fixed running Days"] != null) {
+        LocalDataSaver.saveUserSelectWeekDay(DateFormat('EEEE').format(DateTime.now()));
+        LocalDataSaver.saveUserSelectRegisterProfile("SpecificDay   Fixed running Days");
+        print("SpecificDay.FixedRunningDays:: ${userALlDetailsList[0]["SpecificDay"]["Fixed running Days"]}");
+      }
+      else {
+        LocalDataSaver.saveUserSelectWeekDay(DateFormat('EEEE').format(DateTime.now()));
+        LocalDataSaver.saveUserSelectRegisterProfile("SpecificDay");
+        print("Selected format::::: ${userALlDetailsList[0]["SpecificDay"]}");
+      }
+    }
+    else {
+      LocalDataSaver.saveUserSelectWeekDay(DateFormat('EEEE').format(DateTime.now()));
+      LocalDataSaver.saveUserSelectRegisterProfile("other");
+      print("Selected other format::::: ${userALlDetailsList[0]}");
+    }
   }
 }

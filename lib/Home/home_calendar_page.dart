@@ -25,33 +25,20 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
     events: {},
   );
 
-  // MultipleMarkedDates _multipleDateMap = MultipleMarkedDates(
-  //   markedDates: [],
-  // );
-
   Widget _eventIconGreen = Transform.scale(
-    scale: 0.25,
-    alignment: Alignment.bottomLeft,
-    child: CircleAvatar(
-      backgroundColor: Constant.greenColor,
-    ),
-  );
+      scale: 0.25,
+      alignment: Alignment.bottomLeft,
+      child: CircleAvatar(backgroundColor: Constant.greenColor));
 
   Widget _eventIconBlueR = Transform.scale(
-    scale: 0.25,
-    alignment: Alignment.bottomRight,
-    child: CircleAvatar(
-      backgroundColor: Constant.blueColor,
-    ),
-  );
+      scale: 0.25,
+      alignment: Alignment.bottomRight,
+      child: CircleAvatar(backgroundColor: Constant.blueColor));
 
   Widget _eventIconBlueC = Transform.scale(
-    scale: 0.25,
-    alignment: Alignment.bottomCenter,
-    child: CircleAvatar(
-      backgroundColor: Constant.blueColor,
-    ),
-  );
+      scale: 0.25,
+      alignment: Alignment.bottomCenter,
+      child: CircleAvatar(backgroundColor: Constant.blueColor));
   List greenList = [];
 
   fetchData() async {
@@ -64,27 +51,95 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
       _markedDateMap.events.clear();
       if (totalDays != null || ProfileDetails.userSelectWeekDay == null) {
         setState(() {
-          for (int i = 1; i <= totalDays; i++) {
-            if (ProfileDetails.userSelectWeekDay ==
-                DateFormat('EEEE').format(
-                    DateTime(DateTime.now().year, DateTime.now().month, i))) {
+          if (ProfileDetails.userSelectRegisterProfile == "Monthly") {
+            _markedDateMap.addAll(
+                DateTime(DateTime.now().year, DateTime.now().month,
+                    int.parse(ProfileDetails.userSelectMonthlyDate!)),
+                [
+                  Event(
+                      date: DateTime(DateTime.now().year, DateTime.now().month,
+                          int.parse(ProfileDetails.userSelectMonthlyDate!)),
+                      title: 'eve',
+                      id: DateTime.now().day,
+                      icon: Transform.scale(
+                          scale: 0.25,
+                          alignment: Alignment.bottomCenter,
+                          child: CircleAvatar(
+                              backgroundColor: Constant.greenColor)))
+                ]);
+          } else if (ProfileDetails.userSelectRegisterProfile ==
+              "Bi-Weekly EveryOtherWeek") {
+            for (int i = int.parse(ProfileDetails.userSelectBiWeeklyDay!);
+                i < (int.parse(ProfileDetails.userSelectBiWeeklyDay!) + 14);
+                i++) {
               _markedDateMap.addAll(
                   DateTime(DateTime.now().year, DateTime.now().month, i), [
                 Event(
-                  date: DateTime(DateTime.now().year, DateTime.now().month, i),
-                  title: 'eve',
-                  id: i,
-                  icon: _eventIconGreen,
-                ),
+                    date:
+                        DateTime(DateTime.now().year, DateTime.now().month, i),
+                    title: 'eve',
+                    id: DateTime.now().day,
+                    icon: Transform.scale(
+                        scale: 0.25,
+                        alignment: Alignment.bottomLeft,
+                        child:
+                            CircleAvatar(backgroundColor: Constant.greenColor)))
               ]);
-              greenList.clear();
-              for (var element in _markedDateMap.events.entries) {
-                for (var elements in element.value) {
-                  greenList.add(elements.date.day.toInt());
+            }
+          } else if (ProfileDetails.userSelectRegisterProfile ==
+              "Bi-Weekly   Twice a month") {
+            int selectedBiWeeklyDate =
+                int.parse(ProfileDetails.userSelectBiWeeklyTwiceDay!);
+            _markedDateMap.add(
+                DateTime(DateTime.now().year, DateTime.now().month,
+                    selectedBiWeeklyDate),
+                Event(
+                    date: DateTime(DateTime.now().year, DateTime.now().month,
+                        selectedBiWeeklyDate),
+                    title: 'eve',
+                    id: DateTime.now().day,
+                    icon: Transform.scale(
+                        scale: 0.25,
+                        alignment: Alignment.bottomLeft,
+                        child: CircleAvatar(
+                            backgroundColor: Constant.greenColor))));
+            _markedDateMap.add(
+                DateTime(DateTime.now().year, DateTime.now().month,
+                    selectedBiWeeklyDate + 15),
+                Event(
+                    date: DateTime(DateTime.now().year, DateTime.now().month,
+                        selectedBiWeeklyDate + 15),
+                    title: 'eve',
+                    id: DateTime.now().day,
+                    icon: Transform.scale(
+                        scale: 0.25,
+                        alignment: Alignment.bottomLeft,
+                        child: CircleAvatar(
+                            backgroundColor: Constant.greenColor))));
+          } else {
+            for (int i = 1; i <= totalDays; i++) {
+              if (ProfileDetails.userSelectWeekDay ==
+                  DateFormat('EEEE').format(
+                      DateTime(DateTime.now().year, DateTime.now().month, i))) {
+                _markedDateMap.addAll(
+                    DateTime(DateTime.now().year, DateTime.now().month, i), [
+                  Event(
+                      date: DateTime(
+                          DateTime.now().year, DateTime.now().month, i),
+                      title: 'eve',
+                      id: i,
+                      icon: _eventIconGreen)
+                ]);
+                greenList.clear();
+                for (var element in _markedDateMap.events.entries) {
+                  for (var elements in element.value) {
+                    greenList.add(elements.date.day.toInt());
+                  }
                 }
               }
             }
           }
+
           for (int i = 1; i <= totalDays; i++) {
             for (int j = 0; j < blueDotList.length; j++) {
               if (blueDotList[j] ==
@@ -92,51 +147,16 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                       DateTime(DateTime.now().year, DateTime.now().month, i)
                           .toString()
                           .substring(8, 10))) {
-                // for (var greenListElement in greenList) {
-                //   for (var blueDotListElement in blueDotList) {
-                //     if (greenListElement == blueDotListElement) {
-                //       print("$greenListElement==$blueDotListElement");
-                //       setState(() {});
-                //       _markedDateMap.addAll(
-                //         DateTime(DateTime.now().year, DateTime.now().month,
-                //             greenListElement),
-                //         [
-                //           Event(
-                //             date: DateTime(DateTime.now().year,
-                //                 DateTime.now().month, greenListElement),
-                //             title: 'eve',
-                //             icon: _eventIconBlueR,
-                //           ),
-                //         ],
-                //       );
-                //
-                //     } else {
-                //       _markedDateMap.addAll(
-                //           DateTime(DateTime.now().year, DateTime.now().month,
-                //               blueDotListElement),
-                //           [
-                //             Event(
-                //               date: DateTime(DateTime.now().year,
-                //                   DateTime.now().month, blueDotListElement),
-                //               title: 'eve',
-                //               icon: _eventIconBlueC,
-                //             ),
-                //           ]);
-                //     }
-                //   }
-                // }
-
                 _markedDateMap.addAll(
                     DateTime(DateTime.now().year, DateTime.now().month,
                         blueDotList[j]),
                     [
                       Event(
-                        date: DateTime(DateTime.now().year,
-                            DateTime.now().month, blueDotList[j]),
-                        id: blueDotList[j],
-                        title: 'eve',
-                        icon: _eventIconBlueR,
-                      ),
+                          date: DateTime(DateTime.now().year,
+                              DateTime.now().month, blueDotList[j]),
+                          id: blueDotList[j],
+                          title: 'eve',
+                          icon: _eventIconBlueR)
                     ]);
                 break;
               }
@@ -149,8 +169,7 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
         fetchDataSF();
         fetchDays();
       }
-
-      print("_multipleDateMap::${_markedDateMap.events.length}");
+      // print("_multipleDateMap::${_markedDateMap.events.length}");
     });
   }
 
@@ -160,7 +179,7 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
     await ProfileFirebaseService.getInstance().fetchCustomerUserLoginData();
     await fetchDataSF();
     totalDays = DateTime(DateTime.now().year, DateTime.now().month + 1, 0).day;
-    // fetchData();
+    fetchData();
   }
 
   @override
@@ -168,8 +187,8 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
     ProfileFirebaseService.getInstance().fetchCustomerUserLoginData();
     fetchData();
     // fetchDays();
-    // totalDays == null ? fetchDays() : fetchData();
-    // fetchData();
+    totalDays == null ? fetchDays() : fetchData();
+    fetchData();
     super.initState();
   }
 
@@ -195,7 +214,6 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
       dayPadding: 0.0,
       markedDateIconMargin: 10,
       markedDateIconOffset: 0.1,
-
       // markedDateMoreShowTotal: true,
       daysHaveCircularBorder: false,
       showOnlyCurrentMonthDate: true,
@@ -244,16 +262,11 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                 InkWell(
                   onTap: () {
                     setState(() {
-                      // _targetDateTime = DateTime(
-                      //     _targetDateTime.year, _targetDateTime.month - 1);
-
                       _targetDateTime = DateTime.now();
                       _currentMonth =
                           DateFormat.yMMMM().format(_targetDateTime);
                       _currentDate = DateTime.now();
                       _currentMonthNo = DateTime.now().month.toString();
-                      // _currentMonth =
-                      //     DateFormat.yMMM().format(_targetDateTime);
                     });
                   },
                   child: Row(

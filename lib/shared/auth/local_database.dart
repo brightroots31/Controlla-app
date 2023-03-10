@@ -1,3 +1,5 @@
+// ignore_for_file: await_only_futures
+
 import 'package:controlla/shared/auth/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,6 +12,10 @@ class LocalDataSaver {
   static String userPasswordKey = "userPasswordKey";
   static String userPaidPercKey = "userPaidPercKey";
   static String userSelectWeekDayKey = "userSelectWeekDayKey";
+  static String userSelectRegisterProfileKey = "userSelectRegisterProfileKey";
+  static String userSelectMonthlyDayKey = "userSelectMonthlyDayKey";
+  static String userSelectBiWeeklyDayKey = "userSelectBiWeeklyDayKey";
+  static String userSelectBiWeeklyTwiceDayKey = "userSelectBiWeeklyTwiceDayKey";
   static String userLogKey = "UserLogKey";
 
   static Future<bool> saveUserName(String? userName) async {
@@ -52,11 +58,9 @@ class LocalDataSaver {
     return preferences.getString(userEmailKey);
   }
 
-  static Future<bool> saveUserProfilePosition(
-      String? userProfilePosition) async {
+  static Future<bool> saveUserProfilePosition(String? userProfilePosition) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return await preferences.setString(
-        userProfilePositionKey, userProfilePosition!);
+    return await preferences.setString(userProfilePositionKey, userProfilePosition!);
   }
 
   static Future<String?> getUserProfilePosition() async {
@@ -86,13 +90,52 @@ class LocalDataSaver {
 
   static Future<bool> saveUserSelectWeekDay(String? userSelectWeekDay) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return await preferences.setString(
-        userSelectWeekDayKey, userSelectWeekDay!);
+    return await preferences.setString(userSelectWeekDayKey, userSelectWeekDay!);
   }
 
   static Future<String?> getUserSelectWeekDay() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getString(userSelectWeekDayKey);
+  }
+
+  static Future<bool> saveUserSelectRegisterProfile(String? userSelectRegisterProfile) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return await preferences.setString(userSelectRegisterProfileKey,userSelectRegisterProfile!);
+  }
+
+  static Future<String?> getUserSelectRegisterProfile() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getString(userSelectRegisterProfileKey);
+  }
+
+  static Future<bool> saveUserSelectMonthlyDay(String? userSelectMonthlyDay) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return await preferences.setString(userSelectMonthlyDayKey, userSelectMonthlyDay!);
+  }
+
+  static Future<String?> getUserSelectMonthlyDay() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getString(userSelectMonthlyDayKey);
+  }
+
+  static Future<bool> saveUserSelectBiWeeklyDay(String? userSelectBiWeeklyDay) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return await preferences.setString(userSelectBiWeeklyDayKey, userSelectBiWeeklyDay!);
+  }
+
+  static Future<String?> getUserSelectBiWeeklyDay() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getString(userSelectBiWeeklyDayKey);
+  }
+
+  static Future<bool> saveUserSelectBiWeeklyTwiceDay(String? userSelectBiWeeklyTwiceDay) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return await preferences.setString(userSelectBiWeeklyTwiceDayKey, userSelectBiWeeklyTwiceDay!);
+  }
+
+  static Future<String?> getUserSelectBiWeeklyTwiceDay() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getString(userSelectBiWeeklyTwiceDayKey);
   }
 
   static Future<bool> saveUserLogData(bool isUserLoggedIn) async {
@@ -115,18 +158,25 @@ Future<void> fetchDataSF() async {
   ProfileDetails.userProfilePosition = (await LocalDataSaver.getUserProfilePosition());
   ProfileDetails.userPaidPerc = (await LocalDataSaver.getUserPaidPerc());
   ProfileDetails.userSelectWeekDay = (await LocalDataSaver.getUserSelectWeekDay());
+  ProfileDetails.userSelectRegisterProfile = (await LocalDataSaver.getUserSelectRegisterProfile());
+  ProfileDetails.userSelectMonthlyDate = (await LocalDataSaver.getUserSelectMonthlyDay());
+  ProfileDetails.userSelectBiWeeklyDay = (await LocalDataSaver.getUserSelectBiWeeklyDay());
+  ProfileDetails.userSelectBiWeeklyTwiceDay = (await LocalDataSaver.getUserSelectBiWeeklyTwiceDay());
 }
 
 Future<void> removeDataSF() async {
- SharedPreferences preferences=await SharedPreferences.getInstance();
+  SharedPreferences preferences = await SharedPreferences.getInstance();
 
- preferences.remove("userNameKey");
- preferences.remove("userMobileNumberKey");
- preferences.remove("userEmailKey");
- preferences.remove("userProfilePositionKey");
- preferences.remove("userUidKey");
- preferences.remove("userPasswordKey");
- preferences.remove("userPaidPercKey");
- preferences.remove("userSelectWeekDayKey");
-
+  preferences.remove("userNameKey");
+  preferences.remove("userMobileNumberKey");
+  preferences.remove("userEmailKey");
+  preferences.remove("userProfilePositionKey");
+  preferences.remove("userUidKey");
+  preferences.remove("userPasswordKey");
+  preferences.remove("userPaidPercKey");
+  preferences.remove("userSelectWeekDayKey");
+  preferences.remove("userSelectRegisterProfileKey");
+  preferences.remove("userSelectMonthlyDayKey");
+  preferences.remove("userSelectBiWeeklyDayKey");
+  preferences.remove("userSelectBiWeeklyTwiceDayKey");
 }

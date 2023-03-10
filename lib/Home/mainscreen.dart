@@ -4,11 +4,11 @@ import 'package:controlla/Components/images.dart';
 import 'package:controlla/Home/addsalesandawardscreen.dart';
 import 'package:controlla/Home/home_calendar_page.dart';
 import 'package:controlla/Home/homegoalscreen.dart';
-import 'package:controlla/Home/homescreen.dart';
 import 'package:controlla/Home/infoscreen/infoscreen.dart';
 import 'package:controlla/Home/SettingScreen/settingscreen.dart';
 import 'package:controlla/provider/profile_service.dart';
 import 'package:controlla/shared/auth/constant.dart';
+import 'package:controlla/shared/auth/routes.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -82,6 +82,26 @@ class _MainScreenState extends State<MainScreen> {
                             height:
                                 MediaQuery.of(context).size.height * 0.040)),
                     label: "Search"),
+                // BottomNavigationBarItem(
+                //     icon: InkWell(
+                //       onTap: (){
+                //         Navigator.pushNamed(context, AppRoutes.HowMuchSellPage);
+                //       },
+                //       child: Container(
+                //           height: MediaQuery.of(context).size.height * 0.070,
+                //           width: MediaQuery.of(context).size.height * 0.070,
+                //           decoration: BoxDecoration(
+                //               borderRadius: BorderRadius.circular(25),
+                //               color: _selectedIndex == 2
+                //                   ? Colors.blue
+                //                   : Colors.grey),
+                //           child: Center(
+                //               child: Icon(Icons.add,
+                //                   color: Colors.white,
+                //                   size: MediaQuery.of(context).size.height *
+                //                       0.040))),
+                //     ),
+                //     label: ""),
                 BottomNavigationBarItem(
                     icon: Container(
                         height: MediaQuery.of(context).size.height * 0.070,

@@ -23,7 +23,7 @@ class BiWeeklyCalander extends StatefulWidget {
 class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
   late DateTime nextweek;
   String selectedDay = "Sunday";
-  int number = 1;
+  int number = 0;
   Widget _eventIcon = Transform.scale(
     scale: 0.45,
     alignment: Alignment.center,
@@ -31,7 +31,7 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
       backgroundColor: Colors.grey,
     ),
   );
-  Widget _eventIcons = Transform.scale(
+  Widget _eventBlackIcons = Transform.scale(
     scale: 0.70,
     alignment: Alignment.topLeft,
     child: const CircleAvatar(
@@ -39,12 +39,18 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
     ),
   );
 
+  var totalDays;
+
+  fetchDays() async {
+  }
   @override
   initState() {
+    totalDays = DateTime(DateTime.now().year, DateTime.now().month + 1, 0).day;
     super.initState();
     getdate(0);
   }
 
+  List blackDotList=[];
   void getdate(int days) {
     var firstdayofmonth =
         DateTime(DateTime.now().year, DateTime.now().month, 1);
@@ -58,7 +64,7 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
     DateTime lastDay =
         firstsunday.add(Duration(days: 7 + days, hours: 23, minutes: 59));
 
-    for (int i = 0; i <= 31; i++) {
+    for (int i = 0; i < totalDays; i++) {
       if (DateTime(
                   DateTime.now().year, DateTime.now().month, DateTime.now().day)
               .toString() ==
@@ -89,7 +95,9 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
             ]);
       }
     }
-    for (int i = 0; i <= 12; i++) {
+    blackDotList.clear();
+
+    for (int i = 0; i <= 13; i++) {
       aaa.add(
           DateTime(lastDay.year, lastDay.month, lastDay.day + i).toString());
       _markedDateMap
@@ -97,9 +105,10 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
         Event(
           date: DateTime(lastDay.year, lastDay.month, lastDay.day + i),
           title: 'eve',
-          icon: _eventIcons,
+          icon: _eventBlackIcons,
         )
       ]);
+      blackDotList.add(lastDay.day + i);
     }
     if (widget.index == 0) {
       setState(() {
@@ -251,6 +260,9 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
         print('long pressed date $date');
       },
     );
+    print(blackDotList);
+    // print(number);
+    // print(_markedDateMap.events.length);
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -377,8 +389,10 @@ class _BiWeeklyCalanderState extends State<BiWeeklyCalander> {
                           buttontitlestyle: const TextStyle(
                               color: Colors.white, fontWeight: FontWeight.w600),
                           onpressed: () {
+
+
                             provider.UpdateRegisterDataBiweeklyEveryOtherWeek(
-                                selectedDay);
+                                selectedDay,blackDotList);
                             Navigator.pushReplacementNamed(
                                 context, AppRoutes.CongratsScreen);
                           },
